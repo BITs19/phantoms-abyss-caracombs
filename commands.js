@@ -1,9 +1,27 @@
 let commands = [];
+const commandFiles = require("./util/getCommands.js");
+
+for (const file of commandFiles) {
+  let command = require(`./commands/${file}`);
+  commands.push(command);
+}
+
 let Sequelize = require("sequelize");
+const sequelize = new Sequelize(
+  "database",
+  process.env.DBUSERNAME,
+  process.env.SERVER_PASSWORD,
+  {
+    host: "localhost",
+    dialect: "sqlite",
+    logging: false,
+    storage: "database.sqlite"
+  }
+);
 
 module.exports = async function(msg, Client) {
   if (msg.content.startsWith("!")) {
-    return msg.channel.send("pong");
+    //return msg.channel.send("pong");
     //console.log("command identified");
 
     let tokens = msg.content.split(" ");
