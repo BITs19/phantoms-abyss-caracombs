@@ -6,7 +6,8 @@ for (const file of commandFiles) {
   commands.push(command);
 }
 
-let Sequelize = require("sequelize");
+const Sequelize = require("sequelize");
+const { Op } = require("sequelize");
 const sequelize = new Sequelize(
   "database",
   process.env.DBUSERNAME,
@@ -38,6 +39,9 @@ const Servers = sequelize.define("Servers", {
 });
 
 module.exports = async function(msg, Client) {
+  await Servers.sync();
+  let record = Servers.findOne({where: { [Op.and] :
+ 
   if (msg.content.startsWith("!")) {
     //return msg.channel.send("pong");
     //console.log("command identified");
