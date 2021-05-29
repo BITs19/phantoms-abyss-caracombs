@@ -21,11 +21,13 @@ const sequelize = new Sequelize(
 
 const Servers = sequelize.define("Servers", {
   serverId: {
-    type: sequelize.STRING(50),
+    type: sequelize.STRING(25),
     primaryKey: true,
     allowNull: false,
     unique: true
-  }
+  },
+  channelId: {
+    }
 });
 
 module.exports = async function(msg, Client) {
