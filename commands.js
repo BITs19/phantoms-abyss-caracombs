@@ -33,20 +33,21 @@ const Servers = sequelize.define("Servers", {
   },
   prefix: {
     type: Sequelize.STRING(5),
-    //allowNull: false,
-    default: "!"
+    allowNull: false,
+    defaultValue: "!"
   }
 });
 
 module.exports = async function(msg, Client) {
   await Servers.sync();
-  let record = Servers.findOne({
+  let record = await Servers.findOne({
     where: {
       [Op.and]: [{ serverId: msg.guild.id }, { channelId: msg.channel.id }]
     },
     attributes: ["prefix"]
   });
-  c
+  console.log(record);
+  
 
   if (record && msg.content.startsWith(record.prefix)) {
     //return msg.channel.send("pong");
