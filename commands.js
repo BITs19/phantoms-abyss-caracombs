@@ -27,7 +27,14 @@ const Servers = sequelize.define("Servers", {
     unique: true
   },
   channelId: {
-    }
+    type: sequelize.STRING(25),
+    allowNull: false
+  },
+  prefix: {
+    type: sequelize.STRING(5),
+    allowNull: false,
+    default: "!"
+  }
 });
 
 module.exports = async function(msg, Client) {
