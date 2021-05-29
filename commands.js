@@ -20,10 +20,13 @@ const sequelize = new Sequelize(
 );
 
 const Servers = sequelize.define("Servers", {
-  serverId : {
-    
+  serverId: {
+    type: sequelize.STRING(50),
+    primaryKey: true,
+    allowNull: false,
+    unique: true
   }
-  });
+});
 
 module.exports = async function(msg, Client) {
   if (msg.content.startsWith("!")) {
