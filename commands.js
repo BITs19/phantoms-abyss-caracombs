@@ -22,17 +22,17 @@ const sequelize = new Sequelize(
 
 const Servers = sequelize.define("Servers", {
   serverId: {
-    type: sequelize.STRING(25),
-    primaryKey: true,
+    type: Sequelize.STRING(25),
+    primarykey: true,
     allowNull: false,
     unique: true
   },
   channelId: {
-    type: sequelize.STRING(25),
+    type: Sequelize.STRING(25),
     allowNull: false
   },
   prefix: {
-    type: sequelize.STRING(5),
+    type: Sequelize.STRING(5),
     allowNull: false,
     default: "!"
   }
@@ -78,5 +78,11 @@ module.exports = async function(msg, Client) {
         }
       }
     }
+  } else if (msg.content.startsWith("!bind")) {
+    let created = await Servers.create({
+      serverId: msg.guild.id,
+      channelId: msg.channel.id
+    });
+    msg.channel.send("Phantom's Abyss Catacombs bound to this channel");
   }
 };
