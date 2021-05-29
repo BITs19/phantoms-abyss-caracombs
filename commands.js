@@ -47,7 +47,7 @@ module.exports = async function(msg, Client) {
     attributes: ["prefix"]
   });
 
-  if (msg.content.startsWith("!")) {
+  if (record && msg.content.startsWith(record.prefix)) {
     //return msg.channel.send("pong");
     //console.log("command identified");
 
