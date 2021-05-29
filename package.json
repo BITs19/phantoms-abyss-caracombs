@@ -1,17 +1,18 @@
 {
-  "name": "glitch-mvp-node",
+  "name": "Phantoms-Abyss-Catacombs",
   "version": "0.0.1",
-  "description": "A simple Node app built on fastify, instantly up and running.",
-  "main": "server.js",
+  "description": "A text adventure for Discord ",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "fastify": "^3.14.1",
     "fastify-formbody": "^5.0.0",
     "fastify-static": "^4.0.0",
     "handlebars": "^4.7.7",
-    "point-of-view": "^4.14.0"
+    "point-of-view": "^4.14.0",
+    "sequelize": "^6.6.2"
   },
   "engines": {
     "node": "12.x"
