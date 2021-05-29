@@ -33,7 +33,7 @@ const Servers = sequelize.define("Servers", {
   },
   prefix: {
     type: Sequelize.STRING(5),
-    allowNull: false,
+    //allowNull: false,
     default: "!"
   }
 });
@@ -46,6 +46,7 @@ module.exports = async function(msg, Client) {
     },
     attributes: ["prefix"]
   });
+  c
 
   if (record && msg.content.startsWith(record.prefix)) {
     //return msg.channel.send("pong");
