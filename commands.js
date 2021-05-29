@@ -10,7 +10,7 @@ let Sequelize = require("sequelize");
 const sequelize = new Sequelize(
   "database",
   process.env.DBUSERNAME,
-  process.env.SERVER_PASSWORD,
+  process.env.DBPASSWORD,
   {
     host: "localhost",
     dialect: "sqlite",
@@ -18,6 +18,12 @@ const sequelize = new Sequelize(
     storage: "database.sqlite"
   }
 );
+
+const Servers = sequelize.define("Servers", {
+  serverId : {
+    
+  }
+  });
 
 module.exports = async function(msg, Client) {
   if (msg.content.startsWith("!")) {

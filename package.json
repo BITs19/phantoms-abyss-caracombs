@@ -9,11 +9,6 @@
   "dependencies": {
     "discord.js": "^12.5.3",
     "dotenv": "^10.0.0",
-    "fastify": "^3.14.1",
-    "fastify-formbody": "^5.0.0",
-    "fastify-static": "^4.0.0",
-    "handlebars": "^4.7.7",
-    "point-of-view": "^4.14.0",
     "sequelize": "^6.6.2"
   },
   "engines": {
@@ -26,6 +21,9 @@
   "keywords": [
     "node",
     "glitch",
+    "express"
+  ]
+}tch",
     "express"
   ]
 }
