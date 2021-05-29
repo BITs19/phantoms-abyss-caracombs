@@ -40,8 +40,13 @@ const Servers = sequelize.define("Servers", {
 
 module.exports = async function(msg, Client) {
   await Servers.sync();
-  let record = Servers.findOne({where: { [Op.and] :
- 
+  let record = Servers.findOne({
+    where: {
+      [Op.and]: [{ serverId: msg.guild.id }, { channelId: msg.channel.id }]
+    },
+    attributes: ["prefix"]
+  });
+
   if (msg.content.startsWith("!")) {
     //return msg.channel.send("pong");
     //console.log("command identified");
