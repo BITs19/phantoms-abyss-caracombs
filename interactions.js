@@ -56,7 +56,7 @@ module.exports = async function(interaction, Client) {
     //console.log("command identified");
 
     let tokens = interaction.data;
-
+    console.log(interaction.data);
     // if (!commands.has(command)) return;
 
     // //console.log("commands has command ");
@@ -64,11 +64,11 @@ module.exports = async function(interaction, Client) {
     for (const c of interactions) {
       //console.log(c);
 
-      if (c.pattern.test(interaction.data.nam)) {
+      if (c.pattern.test(interaction.data.name)) {
         try {
           c.execute(interaction, Client);
 
-          //console.log("command executed");
+          console.log("command executed");
         } catch (error) {
           console.log(error);
 
