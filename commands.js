@@ -46,7 +46,7 @@ module.exports = async function(msg, Client) {
     },
     attributes: ["prefix"]
   });
-  console.log(record);
+  //console.log(record);
   
 
   if (record && msg.content.startsWith(record.prefix)) {

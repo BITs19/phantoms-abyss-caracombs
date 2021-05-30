@@ -36,10 +36,13 @@ module.exports = {
     if (!tokens[0])
       return msg.reply("Please specify a symbol to replace the current prefix");
     await Servers.sync();
-    let record = Servers.findOne({ where: { serverId: msg.guild.id } });
+    let record = await Servers.findOne({ where: { serverId: msg.guild.id } });
     if (!record) return msg.reply("Error: no entry found in server list");
     let prefix = tokens[0].charAt(0);
     record.prefix = prefix;
-    
+    record = await record.save();
+    msg.reply(
+      `Prefix for this server successfully updated to '${record.prefix}'`
+    );
   }
 };
