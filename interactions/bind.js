@@ -55,19 +55,33 @@ module.exports = {
           Servers.update(
             { channelId: interaction.channel_id },
             { where: { serverId: interaction.guild_id } }
-          ).then(updated => {
-            Client.api
-              .interactions(interaction.id, interaction.token)
-              .callback.post({
-                data: {
-                  type: 4,
+          )
+            .then(updated => {
+              Client.api
+                .interactions(interaction.id, interaction.token)
+                .callback.post({
                   data: {
-                    content:
-                      "Bound channel updated!"
+                    type: 4,
+                    data: {
+                      content: "Bound channel updated!"
+                    }
                   }
-                }
-              });
-          }).catch(error ;
+                });
+            })
+            .catch(error => {
+              console.log(error);
+              Client.api
+                .interactions(interaction.id, interaction.token)
+                .callback.post({
+                  data: {
+                    type: 4,
+                    data: {
+                      content:
+                        "There was an error updating the bound channel. It has been logged."
+                    }
+                  }
+                });
+            });
         } else {
           console.log(error);
           Client.api

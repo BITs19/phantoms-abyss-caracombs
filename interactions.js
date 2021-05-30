@@ -42,16 +42,13 @@ module.exports = async function(interaction, Client) {
   await Servers.sync();
   let record = await Servers.findOne({
     where: {
-      [Op.and]: [
-        { serverId: interaction.guild_id },
-        { channelId: interaction.channel_id }
-      ]
+      serverId: interaction.guild_id
     },
-    attributes: ["prefix"]
+    attributes: ["channelId"]
   });
   //console.log(record);
 
-  if (record) {
+  if (record && record.channelId === interaction.channel_id) {
     //return msg.channel.send("pong");
     //console.log("command identified");
 
@@ -79,17 +76,7 @@ module.exports = async function(interaction, Client) {
       }
     }
   } else if (interaction.data.name === "bind") {
-    let created = await Servers.create({
-      serverId: interaction.guild_id,
-      channelId: interaction.channel_id
-    });
-    Client.api.interactions(interaction.id, interaction.token).callback.post({
-      data: {
-        type: 4,
-        data: {
-          content: "Phantoms Abyss Catacombs bound to this channel"
-        }
-      }
-    });
+    const Bind = require("./interactions/bind.js");
+    Bind.execute(interaction, Client);
   }
 };
