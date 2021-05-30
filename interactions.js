@@ -1,8 +1,8 @@
 let interactions = [];
-const commandFiles = require("./util/getCommands.js");
+const commandFiles = require("./util/getInteractions.js");
 
 for (const file of commandFiles) {
-  let command = require(`./commands/${file}`);
+  let command = require(`./interactions/${file}`);
   interactions.push(command);
 }
 
