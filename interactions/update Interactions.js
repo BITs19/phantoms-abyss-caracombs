@@ -11,6 +11,7 @@ module.exports = {
   name: "Update Interactions",
   execute: async function(interaction, Client) {
     for (const i of interactions) {
+      
     }
   },
   addInteraction: {
