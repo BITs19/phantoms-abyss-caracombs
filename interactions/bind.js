@@ -52,6 +52,22 @@ module.exports = {
       })
       .catch(error => {
         if (error.name === "SequelizeUniqueConstraintError") {
+          Servers.update(
+            { channelId: interaction.channel_id },
+            { where: { serverId: interaction.guild_id } }
+          ).then(updated => {
+            Client.api
+              .interactions(interaction.id, interaction.token)
+              .callback.post({
+                data: {
+                  type: 4,
+                  data: {
+                    content:
+                      "Bound channel updated!"
+                  }
+                }
+              });
+          }).catch(error ;
         } else {
           console.log(error);
           Client.api
