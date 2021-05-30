@@ -9,7 +9,7 @@ for (const file of getInteractions) {
 
 module.exports = {
   name: "Update Interactions",
-  pattern: /update_interactions/
+  pattern: /update_interactions/i,
   execute: async function(interaction, Client) {
     for (const i of interactions) {
       Client.api
