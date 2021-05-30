@@ -38,7 +38,12 @@ module.exports = {
     await Servers.sync();
     let record = await Servers.findOne({ where: { serverId: msg.guild.id } });
     if (!record) return msg.reply("Error: no entry found in server list");
-    let prefix = tokens[0].charAt(0);
+    const prefix = tokens[0].charAt(0);
+    const alphanumeric = new RegExp("a-zA-Z0-9 ");
+    if (alphanumeric.test(prefix))
+      return msg.reply(
+        `Prefix cannot be alphanumeric value or a space (${prefix})`
+      );
     record.prefix = prefix;
     record = await record.save();
     msg.reply(
