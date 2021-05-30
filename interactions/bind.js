@@ -37,15 +37,36 @@ module.exports = {
     Servers.create({
       serverId: interaction.guild_id,
       channelId: interaction.channel_id
-    }).then(created=>;
-    Client.api.interactions(interaction.id, interaction.token).callback.post({
-      data: {
-        type: 4,
-        data: {
-          content: "Pong!"
+    })
+      .then(created => {
+        Client.api
+          .interactions(interaction.id, interaction.token)
+          .callback.post({
+            data: {
+              type: 4,
+              data: {
+                content: "Phantoms Abyss Catacombs bound to this channel!"
+              }
+            }
+          });
+      })
+      .catch(error => {
+        if (error.name === "SequelizeUniqueConstraintError") {
+        } else {
+          console.log(error);
+          Client.api
+            .interactions(interaction.id, interaction.token)
+            .callback.post({
+              data: {
+                type: 4,
+                data: {
+                  content:
+                    "There was an error binding to this channel. It has been logged."
+                }
+              }
+            });
         }
-      }
-    });
+      });
   },
   addInteraction: {
     name: "bind",

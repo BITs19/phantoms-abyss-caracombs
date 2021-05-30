@@ -56,7 +56,7 @@ module.exports = async function(interaction, Client) {
     //console.log("command identified");
 
     let tokens = interaction.data;
-    console.log(interaction.data);
+    //console.log(interaction.data);
     // if (!commands.has(command)) return;
 
     // //console.log("commands has command ");
