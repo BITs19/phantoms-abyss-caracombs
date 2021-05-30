@@ -9,10 +9,24 @@ for (const file of getInteractions) {
 
 module.exports = {
   name: "Update Interactions",
+  pattern: /update_interactions/
   execute: async function(interaction, Client) {
     for (const i of interactions) {
-      
+      Client.api
+        .applications(Client.user.id)
+        .guilds("848285615194636369")
+        .commands.post({
+          data: i.addInteraction
+        });
     }
+    Client.api.interactions(interaction.id, interaction.token).callback.post({
+      data: {
+        type: 4,
+        data: {
+          content: "Slash Commands Updated!"
+        }
+      }
+    });
   },
   addInteraction: {
     name: "update_interactions",
