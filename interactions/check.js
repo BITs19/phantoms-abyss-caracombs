@@ -1,8 +1,10 @@
+const Players = require("../util/getPlayerTable.js");
+
 module.exports = {
   name: "check",
   pattern: /\bcheck\b/i,
   execute: function(interaction, Client) {
-    console.log(interaction.data.options);
+    //console.log(interaction.data.options);
     Client.api.interactions(interaction.id, interaction.token).callback.post({
       data: {
         type: 4,
