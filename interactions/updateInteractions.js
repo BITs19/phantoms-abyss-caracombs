@@ -14,7 +14,7 @@ module.exports = {
     for (const i of interactions) {
       Client.api
         .applications(Client.user.id)
-        .guilds("848285615194636369")
+        .guilds(interaction.guild_id)
         .commands.post({
           data: i.addInteraction
         });
