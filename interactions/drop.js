@@ -55,7 +55,7 @@ module.exports = {
   name: "Drop",
   pattern: /\bdrop\b/i,
   execute: function(interaction, Client) {
-    if (interaction.user.id != "272162236632530944")
+    if (interaction.member.user.id != "272162236632530944")
       return Client.api
         .interactions(interaction.id, interaction.token)
         .callback.post({

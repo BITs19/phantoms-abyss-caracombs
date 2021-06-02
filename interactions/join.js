@@ -63,7 +63,7 @@ module.exports = {
         id: interaction.member.user.id,
         serversId: interaction.guild_id
       })
-        .then(
+        .then(record => {
           Client.api
             .interactions(interaction.id, interaction.token)
             .callback.post({
@@ -96,12 +96,22 @@ module.exports = {
                   type: 4,
                   data: {
                     content:
-                      "There was an error executingthat command. It has been logged."
+                      "There was an error executing that command. It has been logged."
                   }
                 }
               });
           }
         });
+    } else {
+      Client.api.interactions(interaction.id, interaction.token).callback.post({
+        data: {
+          type: 4,
+          data: {
+            content:
+              "Phantom's Abyss Catacombs must be /bind ed before it can be used"
+          }
+        }
+      });
     }
   },
   addInteraction: {

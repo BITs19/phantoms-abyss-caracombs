@@ -56,7 +56,7 @@ module.exports = async function(interaction, Client) {
     //console.log(interaction.data);
     // if (!commands.has(command)) return;
 
-    console.log("");
+    //console.log("");
 
     for (const c of interactions) {
       //console.log(c);
@@ -65,7 +65,7 @@ module.exports = async function(interaction, Client) {
         try {
           c.execute(interaction, Client);
 
-          console.log("command executed");
+          //console.log("command executed");
         } catch (error) {
           console.log(error);
 
