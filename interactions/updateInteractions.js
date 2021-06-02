@@ -13,11 +13,24 @@ module.exports = {
 
     for (const i of interactions) {
       console.log(`Adding ${i.name}`);
-      await Client.api
+      Client.api
         .applications(Client.user.id)
         .guilds(interaction.guild_id)
         .commands.post({
           data: i.addInteraction
+        })
+        .catch(error => {
+        console.log(error)
+          Client.api
+            .interactions(interaction.id, interaction.token)
+            .callback.post({
+              data: {
+                type: 4,
+                data: {
+                  content: `There was an error updating ${i.name}. It has been logged`
+                }
+              }
+            });
         });
     }
     Client.api.interactions(interaction.id, interaction.token).callback.post({
