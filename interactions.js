@@ -56,7 +56,7 @@ module.exports = async function(interaction, Client) {
     //console.log(interaction.data);
     // if (!commands.has(command)) return;
 
-    console.log("commands has command ");
+    console.log("");
 
     for (const c of interactions) {
       //console.log(c);

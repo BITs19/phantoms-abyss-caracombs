@@ -1,16 +1,16 @@
 const getInteractions = require("../util/getInteractions.js");
 
-const interactions = [];
-
-for (const file of getInteractions) {
-  let command = require(`./${file}`);
-  interactions.push(command);
-}
-
 module.exports = {
   name: "Update Interactions",
   pattern: /update_interactions/i,
   execute: async function(interaction, Client) {
+    //console.log(interactions);
+    const interactions = [];
+    for (const file of getInteractions) {
+      let command = require(`./${file}`);
+      interactions.push(command);
+    }
+
     for (const i of interactions) {
       console.log(`Adding ${i.name}`);
       await Client.api
