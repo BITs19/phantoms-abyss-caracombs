@@ -14,23 +14,7 @@ const sequelize = new Sequelize(
 
 const Players = require("../util/getPlayerTable.js");
 
-const Servers = sequelize.define("Servers", {
-  serverId: {
-    type: Sequelize.STRING(25),
-    primarykey: true,
-    allowNull: false,
-    unique: true
-  },
-  channelId: {
-    type: Sequelize.STRING(25),
-    allowNull: false
-  },
-  prefix: {
-    type: Sequelize.STRING(5),
-    allowNull: false,
-    defaultValue: "!"
-  }
-});
+const Servers = require("../util/getServersTable.js");
 
 Players.belongsTo(Servers);
 
@@ -39,6 +23,7 @@ module.exports = {
   pattern: /join/i,
   execute: async function(interaction, Client) {
     Players.sync();
+    Servers.sync();
     if (await Servers.findOne({ where: { serverId: interaction.guild_id } })) {
       Players.create({
         id: interaction.member.user.id,
