@@ -1,55 +1,8 @@
-const Sequelize = require("sequelize");
-//const { Op } = require("sequelize");
-const sequelize = new Sequelize(
-  "database",
-  process.env.DBUSERNAME,
-  process.env.DBPASSWORD,
-  {
-    host: "localhost",
-    dialect: "sqlite",
-    logging: false,
-    storage: "database.sqlite"
-  }
-);
+const Players = require("../util/getPlayerTable.js");
 
-const Servers = sequelize.define("Servers", {
-  serverId: {
-    type: Sequelize.STRING(25),
-    primarykey: true,
-    allowNull: false,
-    unique: true
-  },
-  channelId: {
-    type: Sequelize.STRING(25),
-    allowNull: false
-  },
-  prefix: {
-    type: Sequelize.STRING(5),
-    allowNull: false,
-    defaultValue: "!"
-  }
-});
+const Servers = require("../util/getServersTable.js");
 
-const Players = sequelize.define("players", {
-  id: {
-    type: Sequelize.STRING(25),
-    primaryKey: true,
-    allowNull: false,
-    unique: true
-  },
-  carrying: {
-    type: Sequelize.INTEGER(1),
-    defaultValue: null
-  },
-  score: {
-    type: Sequelize.INTEGER,
-    defaultValue: 0
-  },
-  lives: {
-    type: Sequelize.INTEGER(1),
-    defaultValue: 3
-  }
-});
+Players.belongsTo(Servers);
 
 module.exports = {
   name: "Drop",
