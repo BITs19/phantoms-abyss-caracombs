@@ -73,8 +73,8 @@ module.exports = {
                   content: "Added Sucessfully!"
                 }
               }
-            })
-        )
+            });
+        })
         .catch(error => {
           if (error.name === "SequelizeUniqueConstraintError") {
             Client.api
