@@ -56,7 +56,7 @@ Players.belongsTo(Servers);
 module.exports = {
   name: "join",
   pattern: /join/i,
-  async execute(interaction, Client) {
+  execute: async function(interaction, Client) {
     Players.sync();
     if (await Servers.findOne({ where: { serverId: interaction.guild_id } })) {
       Players.create({
@@ -88,7 +88,18 @@ module.exports = {
                 }
               });
           } else {
-            
+            console.log(error);
+            Client.api
+              .interactions(interaction.id, interaction.token)
+              .callback.post({
+                data: {
+                  type: 4,
+                  data: {
+                    content:
+                      "There was an error executingthat command. It has been logged."
+                  }
+                }
+              });
           }
         });
     }

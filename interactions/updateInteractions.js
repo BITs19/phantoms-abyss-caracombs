@@ -12,7 +12,8 @@ module.exports = {
   pattern: /update_interactions/i,
   execute: async function(interaction, Client) {
     for (const i of interactions) {
-      Client.api
+      console.log(`Adding ${i.name}`);
+      await Client.api
         .applications(Client.user.id)
         .guilds(interaction.guild_id)
         .commands.post({
