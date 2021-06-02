@@ -77,8 +77,17 @@ module.exports = {
         Players.drop();
         outString += "Players, ";
       }
-      
-      if(
+
+      if (outString === "") outString = "No ";
+      outString += "tables dropped!";
+      Client.api.interactions(interaction.id, interaction.token).callback.post({
+        data: {
+          type: 4,
+          data: {
+            content: outString
+          }
+        }
+      });
     }
   },
   addInteraction: {
