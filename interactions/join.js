@@ -27,6 +27,10 @@ const Players = sequelize.define("players", {
     type: Sequelize.INTEGER,
     defaultValue: 0
   },
+  lives: {
+    type: Sequelize.INTEGER(1),
+    defaultValue: 3
+  }
 });
 
 const Servers = sequelize.define("Servers", {
@@ -47,19 +51,47 @@ const Servers = sequelize.define("Servers", {
   }
 });
 
+Players.belongsTo(Servers);
+
 module.exports = {
   name: "join",
   pattern: /join/i,
-  execute(interaction, Client) {
-    Players.create({id: interaction.member.user.id})
-    Client.api.interactions(interaction.id, interaction.token).callback.post({
-      data: {
-        type: 4,
-        data: {
-          content: "Pong!"
-        }
-      }
-    });
+  async execute(interaction, Client) {
+    Players.sync();
+    if (await Servers.findOne({ where: { serverId: interaction.guild_id } })) {
+      Players.create({
+        id: interaction.member.user.id,
+        serversId: interaction.guild_id
+      })
+        .then(
+          Client.api
+            .interactions(interaction.id, interaction.token)
+            .callback.post({
+              data: {
+                type: 4,
+                data: {
+                  content: "Added Sucessfully!"
+                }
+              }
+            })
+        )
+        .catch(error => {
+          if (error.name === "SequelizeUniqueConstraintError") {
+            Client.api
+              .interactions(interaction.id, interaction.token)
+              .callback.post({
+                data: {
+                  type: 4,
+                  data: {
+                    content: "You're already in the game!"
+                  }
+                }
+              });
+          } else {
+            
+          }
+        });
+    }
   },
   addInteraction: {
     name: "join",
