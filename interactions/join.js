@@ -18,8 +18,7 @@ const Players = sequelize.define("players", {
     primaryKey: true,
     allowNull: false
   },
-  roomId: {
-    }
+  
 });
 
 module.exports = {
