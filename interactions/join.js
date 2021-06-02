@@ -1,3 +1,25 @@
+const Sequelize = require("sequelize");
+//const { Op } = require("sequelize");
+const sequelize = new Sequelize(
+  "database",
+  process.env.DBUSERNAME,
+  process.env.DBPASSWORD,
+  {
+    host: "localhost",
+    dialect: "sqlite",
+    logging: false,
+    storage: "database.sqlite"
+  }
+);
+
+const Players = sequelize.define("players", {
+  id: {
+    type: Sequelize.STRING(25),
+    primaryKey: true,
+    allowNull: false
+  }
+});
+
 module.exports = {
   name: "join",
   pattern: /join/i,
