@@ -18,13 +18,21 @@ const Players = sequelize.define("players", {
     primaryKey: true,
     allowNull: false
   },
-  
+  carrying: {
+    type: Sequelize.INTEGER(1),
+    defaultValue: null
+  },
+  score: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  }
 });
 
 module.exports = {
   name: "join",
   pattern: /join/i,
   execute(interaction, Client) {
+    
     Client.api.interactions(interaction.id, interaction.token).callback.post({
       data: {
         type: 4,
