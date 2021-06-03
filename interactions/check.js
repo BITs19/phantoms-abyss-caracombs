@@ -8,9 +8,10 @@ module.exports = {
     let userId;
     if (interaction.data.options) {
       userId = interaction.data.options[0].value;
-    }else{
-      userId = 
-      }
+    } else {
+      userId = interaction.member.user.id;
+    }
+    const record = Players.findOne({where: {}});
     Client.api.interactions(interaction.id, interaction.token).callback.post({
       data: {
         type: 4,
