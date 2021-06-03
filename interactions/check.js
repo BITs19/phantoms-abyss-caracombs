@@ -14,8 +14,9 @@ module.exports = {
       userId = interaction.member.user.id;
     }
     const record = await Players.findOne({ where: { id: userId } });
-    const member = await Client.guilds.fetch(userId);
-    const avatar = member.avatarURL();
+    const guild = await Client.guilds.fetch(interaction.guild_id);
+    const member = await guild.members.fetch(userId);
+    const avatar = (await Client.users.fetch(userId)).avatarURL();
     let embed = new Discord.MessageEmbed()
       .setAuthor(member.displayName, avatar)
       .setThumbnail(avatar);
