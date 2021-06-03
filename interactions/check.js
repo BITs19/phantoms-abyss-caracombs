@@ -5,6 +5,12 @@ module.exports = {
   pattern: /\bcheck\b/i,
   execute: function(interaction, Client) {
     //console.log(interaction.data.options);
+    let userId;
+    if (interaction.data.options) {
+      userId = interaction.data.options[0].value;
+    }else{
+      userId = 
+      }
     Client.api.interactions(interaction.id, interaction.token).callback.post({
       data: {
         type: 4,
