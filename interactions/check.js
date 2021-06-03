@@ -12,7 +12,7 @@ module.exports = {
       userId = interaction.member.user.id;
     }
     const record = await Players.findOne({where: {id: userId}});
-    const user = await Client.users.fetch(userId);
+   //const user = await Client.users.fetch(userId);
     Client.api.interactions(interaction.id, interaction.token).callback.post({
       data: {
         type: 4,

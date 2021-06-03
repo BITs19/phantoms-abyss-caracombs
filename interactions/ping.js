@@ -1,7 +1,9 @@
 module.exports = {
   name: "ping",
-  pattern: /ping/i, 
-  execute(interaction, Client) {
+  pattern: /ping/i,
+  execute: async function(interaction, Client) {
+    console.log(interaction.member.user.id);
+    console.log(await Client.users.fetch(interaction.user.id));
     Client.api.interactions(interaction.id, interaction.token).callback.post({
       data: {
         type: 4,
