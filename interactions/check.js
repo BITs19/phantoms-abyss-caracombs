@@ -14,10 +14,10 @@ module.exports = {
       userId = interaction.member.user.id;
     }
     const record = await Players.findOne({ where: { id: userId } });
-    const member = interaction.member;
-    const avatar = (await Client.users.fetch(member.user.id)).avatarURL();
+    const member = await Client.guilds.fetch(userId);
+    const avatar = member.avatarURL();
     let embed = new Discord.MessageEmbed()
-      .setAuthor(member.nick, avatar)
+      .setAuthor(member.displayName, avatar)
       .setThumbnail(avatar);
     Client.api.interactions(interaction.id, interaction.token).callback.post({
       data: {
