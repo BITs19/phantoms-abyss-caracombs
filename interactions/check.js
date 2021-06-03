@@ -15,14 +15,16 @@ module.exports = {
     }
     const record = await Players.findOne({ where: { id: userId } });
     const member = interaction.member;
-    const avatar = (await Client.users.fetch(member.user.id)).avatar;
-    let embed = new Discord.MessageEmbed().setAuthor(member.nick, avatar);
+    const avatar = (await Client.users.fetch(member.user.id)).avatarURL();
+    let embed = new Discord.MessageEmbed()
+      .setAuthor(member.nick, avatar)
+      .setThumbnail(avatar);
     Client.api.interactions(interaction.id, interaction.token).callback.post({
       data: {
         type: 4,
         data: {
-          content: "check yourself!",
-          embeds: embed
+          //content: "",
+          embeds: [embed]
         }
       }
     });
