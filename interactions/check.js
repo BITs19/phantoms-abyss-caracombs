@@ -3,7 +3,7 @@ const Players = require("../util/getPlayerTable.js");
 module.exports = {
   name: "check",
   pattern: /\bcheck\b/i,
-  execute: function(interaction, Client) {
+  execute: async function(interaction, Client) {
     //console.log(interaction.data.options);
     let userId;
     if (interaction.data.options) {
@@ -11,7 +11,8 @@ module.exports = {
     } else {
       userId = interaction.member.user.id;
     }
-    const record = Players.findOne({where: {}});
+    const record = await Players.findOne({where: {id: userId}});
+    const user = await Client.users.fetch(userId);
     Client.api.interactions(interaction.id, interaction.token).callback.post({
       data: {
         type: 4,
