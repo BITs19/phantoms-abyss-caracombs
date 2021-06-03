@@ -11,8 +11,9 @@ module.exports = {
     } else {
       userId = interaction.member.user.id;
     }
-    const record = await Players.findOne({where: {id: userId}});
-   //const user = await Client.users.fetch(userId);
+    const record = await Players.findOne({ where: { id: userId } });
+    const member = interaction.member;
+    const avatar = (await Client.users.fetch(member.user.id)).avatar;
     Client.api.interactions(interaction.id, interaction.token).callback.post({
       data: {
         type: 4,
