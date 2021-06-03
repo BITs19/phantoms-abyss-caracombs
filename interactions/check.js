@@ -1,3 +1,5 @@
+const Discord = require("discord.js");
+
 const Players = require("../util/getPlayerTable.js");
 
 module.exports = {
@@ -14,11 +16,13 @@ module.exports = {
     const record = await Players.findOne({ where: { id: userId } });
     const member = interaction.member;
     const avatar = (await Client.users.fetch(member.user.id)).avatar;
+    let embed = new Discord.MessageEmbed().setAuthor(member.nick, avatar);
     Client.api.interactions(interaction.id, interaction.token).callback.post({
       data: {
         type: 4,
         data: {
-          content: "check yourself!"
+          content: "check yourself!",
+          embeds: embed
         }
       }
     });
