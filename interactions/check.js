@@ -18,8 +18,19 @@ module.exports = {
     const member = await guild.members.fetch(userId);
     const avatar = (await Client.users.fetch(userId)).avatarURL();
     let embed = new Discord.MessageEmbed()
-      .setAuthor(member.displayName, avatar)
-      .setThumbnail(avatar);
+      //.setAuthor(member.displayName, avatar)
+      .setThumbnail(avatar)
+      .setTitle(member.displayName)
+      .addFields([
+        {
+          name: "Score",
+          value: record.score
+        },
+        {
+          name: "Lives",
+          value: record.lives
+        }
+      ]);
     Client.api.interactions(interaction.id, interaction.token).callback.post({
       data: {
         type: 4,
