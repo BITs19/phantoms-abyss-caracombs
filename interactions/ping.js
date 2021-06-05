@@ -11,9 +11,7 @@ module.exports = {
       )).id
     );*/
     try {
-      const jsonString = fs.readFileSync(
-        "https://cdn.glitch.com/778ebb69-2cd4-4967-9ee6-0f93ce3868f9%2Fpacman.json?v=1622834537975"
-      );
+      const jsonString = fs.readFileSync("../assets/pacman.json");
       const json = JSON.parse(jsonString);
       Client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
