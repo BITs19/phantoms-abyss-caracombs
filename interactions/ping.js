@@ -11,8 +11,9 @@ module.exports = {
       )).id
     );*/
     try {
-      const jsonString = fs.readFileSync("../assets/pacman.json");
+      const jsonString = fs.readFileSync("/app/assets/pacman.json");
       const json = JSON.parse(jsonString);
+      console.log(json[0]);
       Client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
           type: 4,
