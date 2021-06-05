@@ -14,6 +14,18 @@ module.exports = {
       userId = interaction.member.user.id;
     }
     const record = await Players.findOne({ where: { id: userId } });
+    if (!record)
+      return Client.api
+        .interactions(interaction.id, interaction.token)
+        .callback.post({
+          data: {
+            type: 4,
+            data: {
+              content: "That person isn't a player!"
+              //embeds: [embed]
+            }
+          }
+        });
     const guild = await Client.guilds.fetch(interaction.guild_id);
     const member = await guild.members.fetch(userId);
     const avatar = (await Client.users.fetch(userId)).avatarURL();
