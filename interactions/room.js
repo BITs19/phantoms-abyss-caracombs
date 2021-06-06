@@ -1,5 +1,6 @@
 const Maze = require("../util/getMazeTable.js");
 const Players = require("../util/getPlayerTable.js");
+const PickedPellets = require("../util/getPickedPellets.js");
 
 module.exports = {
   name: "room",
@@ -46,8 +47,6 @@ module.exports = {
     }
     description += "You could /move in one of those directions.\n";
 
-    
-    
     embed.description = description;
 
     return Client.api

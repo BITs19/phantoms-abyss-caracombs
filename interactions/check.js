@@ -6,6 +6,9 @@ module.exports = {
   name: "check",
   pattern: /\bcheck\b/i,
   execute: async function(interaction, Client) {
+    Players.sync();
+    //Maze.sync();
+
     //console.log(interaction.data.options);
     let userId;
     if (interaction.data.options) {
@@ -52,6 +55,10 @@ module.exports = {
             record.holding != null
               ? require("../util/holdables.js")[record.holding]
               : "Nothing"
+        },
+        {
+          name: "Energized",
+          value: record.energized ? "Yes" : "No"
         }
       ]);
     Client.api.interactions(interaction.id, interaction.token).callback.post({
