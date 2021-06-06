@@ -45,6 +45,8 @@ module.exports = {
       else description += ". ";
     }
     embed.description = description;
+    
+    
     return Client.api
       .interactions(interaction.id, interaction.token)
       .callback.post({
