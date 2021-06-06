@@ -1,5 +1,5 @@
-const fs = require("fs");
-const Maze = require("../util/getMazeTable.js");
+//const fs = require("fs");
+//const Maze = require("../util/getMazeTable.js");
 
 module.exports = {
   name: "ping",
@@ -12,10 +12,9 @@ module.exports = {
       )).id
     );*/
     try {
-      Maze.sync();
+      /* Maze.sync();
       const jsonString = fs.readFileSync("/app/assets/pacman.json");
       const json = JSON.parse(jsonString);
-      //console.log(json[0]);
       for (let c of json) {
         if (c.north == -1) c.north = null;
         if (c.south == -1) c.south = null;
@@ -23,7 +22,7 @@ module.exports = {
         if (c.west == -1) c.west = null;
       }
       console.log(json[0]);
-      Maze.bulkCreate(json);
+      Maze.bulkCreate(json);*/
       Client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
           type: 4,
