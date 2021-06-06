@@ -23,3 +23,5 @@ const PickedPellets = sequelize.define("pickedPellets", {
     primaryKey: true
   }
 });
+
+module.exports = PickedPellets;

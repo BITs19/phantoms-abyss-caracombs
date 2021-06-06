@@ -6,6 +6,9 @@ module.exports = {
   name: "room",
   pattern: /\broom\b/i,
   execute: async function(interaction, Client) {
+    Maze.sync();
+    Players.sync();
+    PickedPellets.sync();
     const player = await Players.findOne({
       where: { id: interaction.member.user.id, serversId: interaction.guild_id }
     });
@@ -54,7 +57,7 @@ module.exports = {
 
     if (pellet === 0 && !room.pellet) {
       description +=
-        "There is a floating, glowing object in center of the room. You could probably /eat it";
+        "There is a floating, glowing, apple-sized object in center of the room. It looks delicious. You could probably /eat it.";
     }
 
     embed.description = description;
