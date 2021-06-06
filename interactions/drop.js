@@ -2,7 +2,7 @@ const Players = require("../util/getPlayerTable.js");
 
 const Servers = require("../util/getServersTable.js");
 
-Players.belongsTo(Servers);
+const Maze = require("../util/getMazeTable.js");
 
 module.exports = {
   name: "Drop",
@@ -29,6 +29,10 @@ module.exports = {
       if (option % 7 == 0) {
         Players.drop();
         outString += "Players, ";
+      }
+      if (option % 5 == 0) {
+        Maze.drop();
+        outString += "Maze, ";
       }
 
       if (outString === "") outString = "No ";

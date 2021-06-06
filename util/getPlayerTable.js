@@ -30,6 +30,10 @@ const Players = sequelize.define("players", {
   lives: {
     type: Sequelize.INTEGER(1),
     defaultValue: 3
+  },
+  serversId: {
+    type: Sequelize.STRING(25),
+    allowNull: false
   }
 });
 

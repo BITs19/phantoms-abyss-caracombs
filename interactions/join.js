@@ -2,8 +2,6 @@ const Players = require("../util/getPlayerTable.js");
 
 const Servers = require("../util/getServersTable.js");
 
-Players.belongsTo(Servers);
-
 module.exports = {
   name: "join",
   pattern: /join/i,
