@@ -25,8 +25,13 @@ module.exports = {
             }
           }
         });
-    console.log(player);
-    const room = await Maze.findOne({ where: { id: player.roomId } });
+    //console.log(player.roomId);
+    //console.log(player.datavalues);
+    const room = await Maze.findOne({
+      where: { id: player.roomId }
+    });
+    //console.log("here 1");
+
     let embed = {
       title: "You look around the room."
     };
@@ -54,7 +59,10 @@ module.exports = {
     description += "You could /move in one of those directions.\n";
 
     const pellet = await PickedPellets.count({
-      where: { roomId: player.roomId, serverId: player.serversId }
+      where: {
+        roomId: player.roomId,
+        serverId: player.serversId
+      }
     });
 
     if (pellet === 0 && !room.pellet) {
@@ -64,7 +72,7 @@ module.exports = {
 
     const others = await Players.findAll({
       where: {
-        roomdId: room.id,
+        roomId: room.id,
         id: { [Op.not]: player.id }
       }
     });
