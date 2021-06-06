@@ -25,6 +25,7 @@ module.exports = {
             }
           }
         });
+    console.log(player);
     const room = await Maze.findOne({ where: { id: player.roomId } });
     let embed = {
       title: "You look around the room."
@@ -52,7 +53,7 @@ module.exports = {
 
     description += "You could /move in one of those directions.\n";
 
-    const pellet = PickedPellets.count({
+    const pellet = await PickedPellets.count({
       where: { roomId: player.roomId, serverId: player.serversId }
     });
 
@@ -60,6 +61,14 @@ module.exports = {
       description +=
         "\nThere is a floating, glowing, apple-sized object in center of the room. It looks delicious. You could probably /eat it.\n";
     }
+
+    const others = await Players.findAll({
+      where: {
+        roomdId: room.id,
+        id: { [Op.not]: player.id }
+      }
+    });
+    console.log(others);
 
     embed.description = description;
 
