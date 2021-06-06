@@ -45,10 +45,17 @@ module.exports = {
       if (i != directions.length - 1) description += ", ";
       else description += ". ";
     }
-    
+
     description += "You could /move in one of those directions.\n";
-    
-    const pellet = PickedPellets.findOne({where: {roomId: player.roomId, serverId: player.servers
+
+    const pellet = PickedPellets.count({
+      where: { roomId: player.roomId, serverId: player.serversId }
+    });
+
+    if (pellet === 0 && !room.pellet) {
+      description +=
+        "There is a floating, glowing object in center of the room. You could probably /eat it";
+    }
 
     embed.description = description;
 

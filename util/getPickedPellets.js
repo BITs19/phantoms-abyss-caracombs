@@ -19,6 +19,7 @@ const PickedPellets = sequelize.define("pickedPellets", {
   },
   serverId: {
     type: Sequelize.STRING(25),
-    allowNull: false
+    allowNull: false,
+    primaryKey: true
   }
 });

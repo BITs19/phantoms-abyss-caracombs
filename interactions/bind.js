@@ -4,7 +4,7 @@ const Servers = require("../util/getServersTable.js");
 module.exports = {
   name: "bind",
   pattern: /bind/i,
-  execute(interaction, Client) {
+  execute: function(interaction, Client) {
     Servers.create({
       serverId: interaction.guild_id,
       channelId: interaction.channel_id

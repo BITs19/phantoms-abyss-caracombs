@@ -27,7 +27,7 @@ module.exports = {
         })
         .catch(error => {
           if (error.name === "SequelizeUniqueConstraintError") {
-            Client.api
+            return Client.api
               .interactions(interaction.id, interaction.token)
               .callback.post({
                 data: {
