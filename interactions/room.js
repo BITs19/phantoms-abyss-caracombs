@@ -20,6 +20,9 @@ module.exports = {
           }
         });
     const room = await Maze.findOne({where: {id: player.roomId}})
+    let embed = {
+      title: "You look around the room"
+      }
   },
   addInteraction: {
     name: "room",
