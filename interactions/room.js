@@ -1,6 +1,7 @@
 const Maze = require("../util/getMazeTable.js");
 const Players = require("../util/getPlayerTable.js");
 const PickedPellets = require("../util/getPickedPellets.js");
+const { Sequelize, Op } = require("sequelize");
 
 module.exports = {
   name: "room",
@@ -57,7 +58,7 @@ module.exports = {
 
     if (pellet === 0 && !room.pellet) {
       description +=
-        "There is a floating, glowing, apple-sized object in center of the room. It looks delicious. You could probably /eat it.";
+        "\nThere is a floating, glowing, apple-sized object in center of the room. It looks delicious. You could probably /eat it.\n";
     }
 
     embed.description = description;
