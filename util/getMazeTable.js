@@ -21,10 +21,40 @@ const Maze = sequelize.define("maze", {
   },
   row: {
     type: Sequelize.INTEGER,
-    allowNull: 
+    allowNull: false
   },
   col: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    allowNull: false
   },
-  
+  north: {
+    type: Sequelize.INTEGER,
+    allowNull: true
+  },
+  south: {
+    type: Sequelize.INTEGER,
+    allowNull: true
+  },
+  east: {
+    type: Sequelize.INTEGER,
+    allowNull: true
+  },
+  west: {
+    type: Sequelize.INTEGER,
+    allowNull: true
+  },
+  passable: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false
+  },
+  pellet: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false
+  },
+  energizer: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false
+  }
 });
+
+module.exports = Maze;
