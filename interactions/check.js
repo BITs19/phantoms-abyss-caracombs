@@ -45,6 +45,10 @@ module.exports = {
         {
           name: "Lives",
           value: record.lives
+        },
+        {
+          name: "Holding",
+          value: (record.holdi
         }
       ]);
     Client.api.interactions(interaction.id, interaction.token).callback.post({

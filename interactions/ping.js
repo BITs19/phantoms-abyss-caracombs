@@ -12,7 +12,7 @@ module.exports = {
       )).id
     );*/
     try {
-      /* Maze.sync();
+      /*Maze.sync();
       const jsonString = fs.readFileSync("/app/assets/pacman.json");
       const json = JSON.parse(jsonString);
       for (let c of json) {
