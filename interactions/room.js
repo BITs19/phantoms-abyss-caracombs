@@ -19,10 +19,30 @@ module.exports = {
             }
           }
         });
-    const room = await Maze.findOne({where: {id: player.roomId}})
+    const room = await Maze.findOne({ where: { id: player.roomId } });
     let embed = {
       title: "You look around the room"
-      }
+    };
+    let description = "There are passages to the ";
+    let directions = [];
+    if (room.north) {
+      directions.push("North");
+    }
+    if (room.south) {
+      directions.push("South");
+    }
+    if (room.east) {
+      directions.push("East");
+    }
+    if (room.west) {
+      directions.push("West");
+    }
+    for (let i = 0; i < directions.length; i++) {
+      if (i === directions.length - 1) description += "and ";
+      description += directions[i];
+      if(i != directions.length - 1) description += ", ";
+      else description += 
+    }
   },
   addInteraction: {
     name: "room",
