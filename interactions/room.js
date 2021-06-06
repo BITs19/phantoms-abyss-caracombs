@@ -21,7 +21,7 @@ module.exports = {
         });
     const room = await Maze.findOne({ where: { id: player.roomId } });
     let embed = {
-      title: "You look around the room"
+      title: "You look around the room."
     };
     let description = "There are passages to the ";
     let directions = [];
@@ -40,9 +40,20 @@ module.exports = {
     for (let i = 0; i < directions.length; i++) {
       if (i === directions.length - 1) description += "and ";
       description += directions[i];
-      if(i != directions.length - 1) description += ", ";
-      else description += 
+      if (i != directions.length - 1) description += ", ";
+      else description += ". ";
     }
+    embed.description = description;
+    return Client.api
+      .interactions(interaction.id, interaction.token)
+      .callback.post({
+        data: {
+          type: 4,
+          data: {
+            embeds: [embed]
+          }
+        }
+      });
   },
   addInteraction: {
     name: "room",
