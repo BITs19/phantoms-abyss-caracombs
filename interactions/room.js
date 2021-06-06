@@ -3,11 +3,20 @@ const Players = require("../util/getPlayerTable.js");
 const PickedPellets = require("../util/getPickedPellets.js");
 const { Sequelize, Op } = require("sequelize");
 const getDisplayName = require("../util/getDisplayName.js");
+const Discord = require("discord.js");
 
 module.exports = {
   name: "room",
   pattern: /\broom\b/i,
   execute: async function(interaction, Client) {
+    Client.api.interactions(interaction.id, interaction.token).callback.post({
+      data: {
+        type: 5,
+        data: {
+          content: "Thinking..."
+        }
+      }
+    });
     Maze.sync();
     Players.sync();
     PickedPellets.sync();
@@ -86,10 +95,15 @@ module.exports = {
       for (let i = 0; i < others.length; i++) {
         if (others.length > 1 && i === others.length - 1) description += "and ";
         description += await getDisplayName(Client, others[i].id, interaction);
+        if (others.length > 2 && i != others.length - 1) description += ", ";
       }
+      description += " in the same room as you.\n";
     }
 
     embed.description = description;
+    new Discord.WebhookClient(Client.user.id, interaction.token).send({
+      embeds: [embed]
+    });
 
     return Client.api
       .interactions(interaction.id, interaction.token)
