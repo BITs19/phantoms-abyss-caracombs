@@ -65,7 +65,7 @@ module.exports = {
       }
     });
 
-    if (pellet === 0 && !room.pellet) {
+    if (pellet === 0 && room.pellet) {
       description +=
         "\nThere is a floating, glowing, apple-sized object in center of the room. It looks delicious. You could probably /eat it.\n";
     }
@@ -76,7 +76,11 @@ module.exports = {
         id: { [Op.not]: player.id }
       }
     });
-    console.log(others);
+    //console.log(others);
+
+    if (others.length === 0) {
+      description += "\nYou are alone.\n";
+    }
 
     embed.description = description;
 

@@ -38,7 +38,7 @@ const Players = sequelize.define("players", {
   roomId: {
     type: Sequelize.INTEGER,
     allowNull: false,
-    defaultValue: 743
+    defaultValue: 742
   },
   level: {
     type: Sequelize.INTEGER,
