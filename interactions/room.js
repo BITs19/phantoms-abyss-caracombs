@@ -2,6 +2,7 @@ const Maze = require("../util/getMazeTable.js");
 const Players = require("../util/getPlayerTable.js");
 const PickedPellets = require("../util/getPickedPellets.js");
 const { Sequelize, Op } = require("sequelize");
+const getDisplayName = require("../util/getDisplayName.js");
 
 module.exports = {
   name: "room",
@@ -80,6 +81,12 @@ module.exports = {
 
     if (others.length === 0) {
       description += "\nYou are alone.\n";
+    } else {
+      description += "\nYou see ";
+      for (let i = 0; i < others.length; i++) {
+        if (others.length > 1 && i === others.length - 1) description += "and ";
+        description += await getDisplayName(Client, others[i].id, interaction);
+      }
     }
 
     embed.description = description;
