@@ -15,7 +15,8 @@ module.exports = {
           data: {
             type: 4,
             data: {
-              content: "You don't appear to be a player in this server!"
+              content:
+                "You don't appear to be a player in this server!\nUse /join to start your journey!"
             }
           }
         });
