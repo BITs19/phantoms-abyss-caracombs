@@ -44,9 +44,12 @@ module.exports = {
       if (i != directions.length - 1) description += ", ";
       else description += ". ";
     }
+    description += "You could /move in one of those directions.\n";
+
+    
+    
     embed.description = description;
-    
-    
+
     return Client.api
       .interactions(interaction.id, interaction.token)
       .callback.post({
