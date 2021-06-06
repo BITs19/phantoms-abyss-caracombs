@@ -39,6 +39,11 @@ const Players = sequelize.define("players", {
     type: Sequelize.INTEGER,
     allowNull: false,
     defaultValue: 950
+  },
+  level: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 1
   }
 });
 

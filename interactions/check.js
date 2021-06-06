@@ -35,6 +35,10 @@ module.exports = {
       .setTitle(member.displayName)
       .addFields([
         {
+          name: "Level",
+          value: record.level
+        },
+        {
           name: "Score",
           value: record.score
         },
