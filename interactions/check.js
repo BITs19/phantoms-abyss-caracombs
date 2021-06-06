@@ -48,7 +48,10 @@ module.exports = {
         },
         {
           name: "Holding",
-          value: (record.holdi
+          value:
+            record.holding != null
+              ? require("../util/holdables.js")[record.holding]
+              : "Nothing"
         }
       ]);
     Client.api.interactions(interaction.id, interaction.token).callback.post({
