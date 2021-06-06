@@ -34,6 +34,11 @@ const Players = sequelize.define("players", {
   serversId: {
     type: Sequelize.STRING(25),
     allowNull: false
+  },
+  roomId: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 950
   }
 });
 
