@@ -1,5 +1,6 @@
 let interactions = [];
 const commandFiles = require("./util/getInteractions.js");
+const replyInteraction = require("../util/replyInteraction.js");
 
 for (const file of commandFiles) {
   let command = require(`./interactions/${file}`);
@@ -76,8 +77,11 @@ module.exports = async function(interaction, Client) {
           //console.log("command executed");
         } catch (error) {
           console.log(error);
-
-          //msg.reply("There was an error executing that command :(");
+          replyInteraction(
+            Client,
+            interaction,
+            "There was an error. It has been logged"
+          ); //msg.reply("There was an error executing that command :(");
         } finally {
           break;
         }
@@ -86,5 +90,6 @@ module.exports = async function(interaction, Client) {
   } else if (interaction.data.name === "bind") {
     const Bind = require("./interactions/bind.js");
     Bind.execute(interaction, Client);
-  }
+  }else {
+    replyInteraction(Client, interaction, "Looks like Phantom's Abyss Catacombs     }
 };
