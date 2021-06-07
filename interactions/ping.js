@@ -32,17 +32,22 @@ module.exports = {
           }
         }
       });*/
-      replyInteraction("Pong!");
+      replyInteraction(Client, interaction, "Pong!");
     } catch (err) {
       console.log(err);
-      Client.api.interactions(interaction.id, interaction.token).callback.post({
+      /* Client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
           type: 4,
           data: {
             content: "There was an error. It has been logged!"
           }
         }
-      });
+      });*/
+      replyInteraction(
+        Client,
+        interaction,
+        "There was an error executing that command. It has been logged."
+      );
     }
   },
   addInteraction: {

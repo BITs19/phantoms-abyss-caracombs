@@ -17,10 +17,7 @@ module.exports = {
       where: { id: interaction.member.user.id, serversId: interaction.guild_id }
     });
     if (!player)
-      return new Discord.WebhookClient(Client.user.id, interaction.token).send(
-        "You don't appear to be a player in this server!. Use /join to start your adventure!"
-      );
-    //console.log(player.roomId);
+      return replyInteraction(Client, interaction, "You don't appear to be a player in    //console.log(player.roomId);
     //console.log(player.datavalues);
     const room = await Maze.findOne({
       where: { id: player.roomId }
