@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
-
 const Players = require("../util/getPlayerTable.js");
+const replyInteraction = require("../util/replyInteraction.js");
 
 module.exports = {
   name: "check",
@@ -18,7 +18,8 @@ module.exports = {
     }
     const record = await Players.findOne({ where: { id: userId } });
     if (!record)
-      return Client.api
+      replyInteraction(Client, interaction, "That person isn't a player!");
+    /*return Client.api
         .interactions(interaction.id, interaction.token)
         .callback.post({
           data: {
@@ -28,7 +29,8 @@ module.exports = {
               //embeds: [embed]
             }
           }
-        });
+        });*/
+
     const guild = await Client.guilds.fetch(interaction.guild_id);
     const member = await guild.members.fetch(userId);
     const avatar = (await Client.users.fetch(userId)).avatarURL();
@@ -61,7 +63,7 @@ module.exports = {
           value: record.energized ? "Yes" : "No"
         }
       ]);
-    Client.api.interactions(interaction.id, interaction.token).callback.post({
+    /*Client.api.interactions(interaction.id, interaction.token).callback.post({
       data: {
         type: 4,
         data: {
@@ -69,7 +71,8 @@ module.exports = {
           embeds: [embed]
         }
       }
-    });
+    });*/
+    replyInteraction(Client, interaction, "", [embed]);
   },
   addInteraction: {
     name: "check",
