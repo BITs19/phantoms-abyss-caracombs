@@ -4,12 +4,12 @@ const PickedPellets = require("../util/getPickedPellets.js");
 const { Sequelize, Op } = require("sequelize");
 const getDisplayName = require("../util/getDisplayName.js");
 const Discord = require("discord.js");
+const replyInteraction = require("../util/replyInteraction.js");
 
 module.exports = {
   name: "room",
   pattern: /\broom\b/i,
   execute: async function(interaction, Client) {
-    
     Maze.sync();
     Players.sync();
     PickedPellets.sync();
@@ -17,7 +17,12 @@ module.exports = {
       where: { id: interaction.member.user.id, serversId: interaction.guild_id }
     });
     if (!player)
-      return replyInteraction(Client, interaction, "You don't appear to be a player in    //console.log(player.roomId);
+      return replyInteraction(
+        Client,
+        interaction,
+        "You don't appear to be a player in this server! Use /join start your adventure!"
+      );
+    //console.log(player.roomId);
     //console.log(player.datavalues);
     const room = await Maze.findOne({
       where: { id: player.roomId }
@@ -84,9 +89,7 @@ module.exports = {
 
     embed.description = description;
 
-    new Discord.WebhookClient(Client.user.id, interaction.token).send({
-      embeds: [embed]
-    });
+    replyInteraction(Client, interaction, "", [embed]);
   },
   addInteraction: {
     name: "room",

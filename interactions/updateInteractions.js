@@ -1,4 +1,5 @@
 const getInteractions = require("../util/getInteractions.js");
+const replyInteraction = require("../util/replyInteraction.js");
 
 module.exports = {
   name: "Update Interactions",
@@ -20,27 +21,33 @@ module.exports = {
           data: i.addInteraction
         })
         .catch(error => {
-        console.log(error)
-          Client.api
+          console.log(error);
+          /*Client.api
             .interactions(interaction.id, interaction.token)
             .callback.post({
               data: {
                 type: 4,
                 data: {
-                  content: `There was an error updating ${i.name}. It has been logged`
+                  content: const replyInteraction = require("../util/replyInteraction.js");
                 }
               }
-            });
+            });*/
+          replyInteraction(
+            Client,
+            interaction,
+            `There was an error updating ${i.name}. It has been logged.`
+          );
         });
     }
-    Client.api.interactions(interaction.id, interaction.token).callback.post({
+    /*Client.api.interactions(interaction.id, interaction.token).callback.post({
       data: {
         type: 4,
         data: {
           content: "Slash Commands Updated!"
         }
       }
-    });
+    });*/
+    replyInteraction(Client, interaction, "Slash Commands Updated!");
   },
   addInteraction: {
     name: "update_interactions",
