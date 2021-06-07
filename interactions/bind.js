@@ -20,7 +20,12 @@ module.exports = {
               }
             }
           });*/
-      replyInteraction(Cliet      })
+        replyInteraction(
+          Client,
+          interaction,
+          "Phantom's Abyss Catacombs bound to this channel!"
+        );
+      })
       .catch(error => {
         if (error.name === "SequelizeUniqueConstraintError") {
           Servers.update(
@@ -28,20 +33,11 @@ module.exports = {
             { where: { serverId: interaction.guild_id } }
           )
             .then(updated => {
-              Client.api
-                .interactions(interaction.id, interaction.token)
-                .callback.post({
-                  data: {
-                    type: 4,
-                    data: {
-                      content: "Bound channel updated!"
-                    }
-                  }
-                });
+              replyInteraction(Client, interaction, "Bound channel updated!");
             })
             .catch(error => {
               console.log(error);
-              Client.api
+              /*Client.api
                 .interactions(interaction.id, interaction.token)
                 .callback.post({
                   data: {
@@ -51,7 +47,12 @@ module.exports = {
                         "There was an error updating the bound channel. It has been logged."
                     }
                   }
-                });
+                });*/
+              replyInteraction(
+                Client,
+                interaction,
+                "There was an error updating the bound channel. It has been logged."
+              );
             });
         } else {
           console.log(error);
