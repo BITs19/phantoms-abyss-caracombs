@@ -1,6 +1,6 @@
 const Players = require("../util/getPlayerTable.js");
-
 const Servers = require("../util/getServersTable.js");
+const replyInteraction = require("../util/replyInteraction.js");
 
 module.exports = {
   name: "join",
@@ -14,7 +14,7 @@ module.exports = {
         serversId: interaction.guild_id
       })
         .then(record => {
-          Client.api
+          /*Client.api
             .interactions(interaction.id, interaction.token)
             .callback.post({
               data: {
@@ -23,11 +23,16 @@ module.exports = {
                   content: "Added Sucessfully!"
                 }
               }
-            });
+            });*/
+          replyInteraction(
+            Client,
+            interaction,
+            "Added Sucessfully! Use /room to look around yourself"
+          );
         })
         .catch(error => {
           if (error.name === "SequelizeUniqueConstraintError") {
-            return Client.api
+            /*return Client.api
               .interactions(interaction.id, interaction.token)
               .callback.post({
                 data: {
@@ -36,10 +41,20 @@ module.exports = {
                     content: "You're already in the game!"
                   }
                 }
-              });
+              });*/
+            replyInteraction(
+              Client,
+              interaction,
+              "You're already in the game!"
+            );
           } else {
             console.log(error);
-            Client.api
+            replyInteraction(
+              Client,
+              interaction,
+              "There was an error executing that command. It has been logged "
+            );
+            /*Client.api
               .interactions(interaction.id, interaction.token)
               .callback.post({
                 data: {
@@ -49,11 +64,11 @@ module.exports = {
                       "There was an error executing that command. It has been logged."
                   }
                 }
-              });
+              });*/
           }
         });
     } else {
-      Client.api.interactions(interaction.id, interaction.token).callback.post({
+      /*Client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
           type: 4,
           data: {
@@ -61,7 +76,7 @@ module.exports = {
               "Phantom's Abyss Catacombs must be /bind ed before it can be used"
           }
         }
-      });
+      });*/
     }
   },
   addInteraction: {

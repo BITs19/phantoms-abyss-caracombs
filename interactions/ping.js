@@ -1,5 +1,6 @@
 //const fs = require("fs");
 //const Maze = require("../util/getMazeTable.js");
+const replyInteraction = require("../util/replyInteraction.js");
 
 module.exports = {
   name: "ping",
@@ -23,14 +24,15 @@ module.exports = {
       }
       console.log(json[0]);
       Maze.bulkCreate(json);*/
-      Client.api.interactions(interaction.id, interaction.token).callback.post({
+      /*Client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
           type: 4,
           data: {
             content: "Pong!"
           }
         }
-      });
+      });*/
+      replyInteraction("Pong!");
     } catch (err) {
       console.log(err);
       Client.api.interactions(interaction.id, interaction.token).callback.post({

@@ -1,8 +1,7 @@
 const Players = require("../util/getPlayerTable.js");
-
 const Servers = require("../util/getServersTable.js");
-
 const Maze = require("../util/getMazeTable.js");
+const replyInteraction = require("../util/replyInteraction.js");
 
 module.exports = {
   name: "Drop",
@@ -37,14 +36,15 @@ module.exports = {
 
       if (outString === "") outString = "No ";
       outString += "tables dropped!";
-      Client.api.interactions(interaction.id, interaction.token).callback.post({
+      /*Client.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
           type: 4,
           data: {
             content: outString
           }
         }
-      });
+      });*/
+      replyInteraction(Client, interaction, outString);
     }
   },
   addInteraction: {
