@@ -24,17 +24,9 @@ module.exports = {
       where: { id: interaction.member.user.id, serversId: interaction.guild_id }
     });
     if (!player)
-      return Client.api
-        .interactions(interaction.id, interaction.token)
-        .callback.post({
-          data: {
-            type: 4,
-            data: {
-              content:
-                "You don't appear to be a player in this server!\nUse /join to start your journey!"
-            }
-          }
-        });
+      return new Discord.WebhookClient(Client.user.id, interaction.token).send(
+        "You don't appear to be a player in this server!. Use /join to start your adventure!"
+      );
     //console.log(player.roomId);
     //console.log(player.datavalues);
     const room = await Maze.findOne({
@@ -101,20 +93,10 @@ module.exports = {
     }
 
     embed.description = description;
+
     new Discord.WebhookClient(Client.user.id, interaction.token).send({
       embeds: [embed]
     });
-
-    return Client.api
-      .interactions(interaction.id, interaction.token)
-      .callback.post({
-        data: {
-          type: 4,
-          data: {
-            embeds: [embed]
-          }
-        }
-      });
   },
   addInteraction: {
     name: "room",
