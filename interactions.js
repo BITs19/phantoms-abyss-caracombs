@@ -1,6 +1,6 @@
 let interactions = [];
 const commandFiles = require("./util/getInteractions.js");
-const replyInteraction = require("../util/replyInteraction.js");
+const replyInteraction = require("./util/replyInteraction.js");
 
 for (const file of commandFiles) {
   let command = require(`./interactions/${file}`);
@@ -21,7 +21,8 @@ const sequelize = new Sequelize(
   }
 );
 
-const Servers = sequelize.define("Servers", {
+const Servers = require("./util/getServersTable.js");
+      /*sequelize.define("Servers", {
   serverId: {
     type: Sequelize.STRING(25),
     primarykey: true,
@@ -37,10 +38,10 @@ const Servers = sequelize.define("Servers", {
     allowNull: false,
     defaultValue: "!"
   }
-});
+});*/
 
 module.exports = async function(interaction, Client) {
-  console.log("here 1");
+  //console.log("here 1");
   Client.api.interactions(interaction.id, interaction.token).callback.post({
     data: {
       type: 5,
