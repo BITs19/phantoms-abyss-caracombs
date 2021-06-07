@@ -1,5 +1,5 @@
 const replyInteraction = require("../util/replyInteraction.js");
-const Players = require(
+const Players = require("../util
 
 module.exports = {
   name: "move",
