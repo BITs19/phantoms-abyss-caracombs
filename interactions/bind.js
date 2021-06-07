@@ -1,4 +1,4 @@
-
+const replyInteraction = require("../util/replyInteraction.js");
 const Servers = require("../util/getServersTable.js");
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
       channelId: interaction.channel_id
     })
       .then(created => {
-        Client.api
+        /*Client.api
           .interactions(interaction.id, interaction.token)
           .callback.post({
             data: {
@@ -19,8 +19,8 @@ module.exports = {
                 content: "Phantoms Abyss Catacombs bound to this channel!"
               }
             }
-          });
-      })
+          });*/
+      replyInteraction(Cliet      })
       .catch(error => {
         if (error.name === "SequelizeUniqueConstraintError") {
           Servers.update(

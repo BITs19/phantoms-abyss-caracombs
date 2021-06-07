@@ -39,6 +39,14 @@ const Servers = sequelize.define("Servers", {
 });
 
 module.exports = async function(interaction, Client) {
+  Client.api.interactions(interaction.id, interaction.token).callback.post({
+    data: {
+      type: 5,
+      data: {
+        content: "Thinking..."
+      }
+    }
+  });
   await Servers.sync();
   let record = await Servers.findOne({
     where: {

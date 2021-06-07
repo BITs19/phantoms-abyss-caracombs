@@ -9,14 +9,7 @@ module.exports = {
   name: "room",
   pattern: /\broom\b/i,
   execute: async function(interaction, Client) {
-    Client.api.interactions(interaction.id, interaction.token).callback.post({
-      data: {
-        type: 5,
-        data: {
-          content: "Thinking..."
-        }
-      }
-    });
+    
     Maze.sync();
     Players.sync();
     PickedPellets.sync();
