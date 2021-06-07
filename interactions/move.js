@@ -1,10 +1,16 @@
 const replyInteraction = require("../util/replyInteraction.js");
-const Players = require("../util
+const Players = require("../util/getPlayerTable.js");
+const Maze = require("../util/getMazeTable.js");
 
 module.exports = {
   name: "move",
   pattern: /\bmove\b/i,
-  execute: async function(interaction, Client) {},
+  execute: async function(interaction, Client) {
+    Players.sync();
+    Maze.sync();
+
+    replyInteraction(Client, interaction, "Boo");
+  },
   addInteraction: {
     name: "move",
     description: "Move in a cardinal direction",

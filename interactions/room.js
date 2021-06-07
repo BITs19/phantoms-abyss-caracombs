@@ -3,7 +3,7 @@ const Players = require("../util/getPlayerTable.js");
 const PickedPellets = require("../util/getPickedPellets.js");
 const { Sequelize, Op } = require("sequelize");
 const getDisplayName = require("../util/getDisplayName.js");
-const Discord = require("discord.js");
+//const Discord = require("discord.js");
 const replyInteraction = require("../util/replyInteraction.js");
 
 module.exports = {
