@@ -56,23 +56,17 @@ module.exports = {
             });
         } else {
           console.log(error);
-          Client.api
-            .interactions(interaction.id, interaction.token)
-            .callback.post({
-              data: {
-                type: 4,
-                data: {
-                  content:
-                    "There was an error binding to this channel. It has been logged."
-                }
-              }
-            });
+          replyInteraction(
+            Client,
+            interaction,
+            "There was an error binding to this channel. It has been logged."
+          );
         }
       });
   },
   addInteraction: {
     name: "bind",
     description:
-      "Bind the bot to a certain channel. This is required for the bot to function.."
+      "Bind the bot to a certain channel. This is required for the bot to function."
   }
 };
