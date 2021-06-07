@@ -40,6 +40,7 @@ const Servers = sequelize.define("Servers", {
 });
 
 module.exports = async function(interaction, Client) {
+  console.log("here 1");
   Client.api.interactions(interaction.id, interaction.token).callback.post({
     data: {
       type: 5,
@@ -90,6 +91,11 @@ module.exports = async function(interaction, Client) {
   } else if (interaction.data.name === "bind") {
     const Bind = require("./interactions/bind.js");
     Bind.execute(interaction, Client);
-  }else {
-    replyInteraction(Client, interaction, "Looks like Phantom's Abyss Catacombs     }
+  } else {
+    replyInteraction(
+      Client,
+      interaction,
+      "Looks like Phantom's Abyss Catacombs hasn't been /bind ed yet"
+    );
+  }
 };

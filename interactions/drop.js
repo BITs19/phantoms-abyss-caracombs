@@ -8,7 +8,12 @@ module.exports = {
   pattern: /\bdrop\b/i,
   execute: function(interaction, Client) {
     if (interaction.member.user.id != "272162236632530944")
-      return Client.api
+      return replyInteraction(
+        Client,
+        interaction,
+        "You must be Michael to use this command!"
+      );
+    /*return Client.api
         .interactions(interaction.id, interaction.token)
         .callback.post({
           data: {
@@ -17,7 +22,7 @@ module.exports = {
               content: "You must be Michael to execute this command!"
             }
           }
-        });
+        });*/
     if (interaction.data.options[0].name === "option") {
       let outString = "";
       const option = interaction.data.options[0].value;
