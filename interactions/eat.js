@@ -34,10 +34,29 @@ module.exports = {
     const pelletPicked = PickedPellets.count({
       where: { roomId: room.id, serverId: interaction.guild_id }
     });
-    
-    if(pelletPicked == 0){
-      if(room.pellet){
-        
+
+    if (pelletPicked == 0) {
+      if (room.pellet) {
+        PickedPellets.create({
+          roomId: room.id,
+          serverId: interaction.guild_id
+        });
+        player.score += 10;
+        return replyInteraction(Client, interaction, "")
+      } else if (room.energizer) {
+        PickedPellets.create({
+          roomId: room.id,
+          serverId: interaction.guild_id
+        });
+        player.score += 50;
+        player.energized = true;
+        player.energizeTimer = 30;
+      } else {
+        return replyInteraction(
+          Client,
+          interaction,
+          "There is nothing in this room to eat."
+        );
       }
     }
     replyInteraction(Client, interaction, "foo");

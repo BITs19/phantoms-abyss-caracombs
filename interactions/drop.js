@@ -1,6 +1,7 @@
 const Players = require("../util/getPlayerTable.js");
 const Servers = require("../util/getServersTable.js");
 const Maze = require("../util/getMazeTable.js");
+const PickedPellets = require("../util/getPickedPellets.js");
 const replyInteraction = require("../util/replyInteraction.js");
 
 module.exports = {
@@ -38,7 +39,10 @@ module.exports = {
         Maze.drop();
         outString += "Maze, ";
       }
-
+      if (option % 3 == 0) {
+        PickedPellets.drop();
+        outString += "PickedPellets, ";
+      }
       if (outString === "") outString = "No ";
       outString += "tables dropped!";
       /*Client.api.interactions(interaction.id, interaction.token).callback.post({
