@@ -35,10 +35,11 @@ module.exports = {
       where: { roomId: room.id, serverId: interaction.guild_id }
     });
 
+    
     console.log(pelletPicked);
     if (pelletPicked == 0) {
       if (room.pellet) {
-        PickedPellets.create({
+        await PickedPellets.create({
           roomId: room.id,
           serverId: interaction.guild_id
         });
@@ -50,7 +51,7 @@ module.exports = {
           "You eat the object. It is delicious. You feel accomplished."
         );
       } else if (room.energizer) {
-        PickedPellets.create({
+        await PickedPellets.create({
           roomId: room.id,
           serverId: interaction.guild_id
         });
