@@ -48,6 +48,10 @@ const Players = sequelize.define("players", {
   energized: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
+  },
+  energizeTimer: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   }
 });
 
