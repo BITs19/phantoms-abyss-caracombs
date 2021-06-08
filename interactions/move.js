@@ -1,6 +1,7 @@
 const replyInteraction = require("../util/replyInteraction.js");
 const Players = require("../util/getPlayerTable.js");
 const Maze = require("../util/getMazeTable.js");
+const Room = require("./room.js");
 
 module.exports = {
   name: "move",
@@ -49,7 +50,8 @@ module.exports = {
         );
     }
 
-    replyInteraction(Client, interaction, "Boo");
+    Room.execute(interaction, Client);
+    //replyInteraction(Client, interaction, "Boo");
   },
   addInteraction: {
     name: "move",
