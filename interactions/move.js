@@ -33,10 +33,20 @@ module.exports = {
     let newRoomId;
 
     switch (interaction.data.options[0].value.toUpperCase()) {
-        case 'NORTH':
+      case "NORTH":
         break;
-        case 'SOUTH':
-        
+      case "SOUTH":
+        break;
+      case "EAST":
+        break;
+      case "WEST":
+        break;
+      default:
+        return replyInteraction(
+          Client,
+          interaction,
+          `Invalid direction: ${interaction.data.options[0].value}`
+        );
     }
 
     replyInteraction(Client, interaction, "Boo");
