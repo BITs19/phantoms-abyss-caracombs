@@ -9,6 +9,36 @@ module.exports = {
     Players.sync();
     Maze.sync();
 
+    const player = await Players.findOne({
+      where: {
+        id: interaction.member.user.id,
+        serversId: interaction.guild_id
+      }
+    });
+
+    if (!player) {
+      return replyInteraction(
+        Client,
+        interaction,
+        "You are not a player in this server. Use /join to start your adventure"
+      );
+    }
+
+    const oldRoom = await Maze.findOne({
+      where: {
+        id: player.roomId
+      }
+    });
+
+    let newRoomId;
+
+    switch (interaction.data.options[0].value.toUpperCase()) {
+        case 'NORTH':
+        break;
+        case 'SOUTH':
+        
+    }
+
     replyInteraction(Client, interaction, "Boo");
   },
   addInteraction: {
