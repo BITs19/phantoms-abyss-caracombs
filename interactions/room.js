@@ -67,6 +67,11 @@ module.exports = {
         "\nThere is a floating, glowing, apple-sized object in center of the room. It looks delicious. You could probably /eat it.\n";
     }
 
+    if (pellet === 0 && room.energizer) {
+      description +=
+        "\nThere is a floating, glowing, melon-sized object in center of the room. It looks delicious. You could probably /eat it.\n";
+    }
+
     const others = await Players.findAll({
       where: {
         roomId: room.id,
