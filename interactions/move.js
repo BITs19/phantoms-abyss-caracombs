@@ -31,7 +31,7 @@ module.exports = {
       }
     });
 
-    let newRoomId;
+    let newRoomId = null;
 
     switch (interaction.data.options[0].value.toUpperCase()) {
       case "NORTH":
