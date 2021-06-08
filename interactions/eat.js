@@ -31,10 +31,11 @@ module.exports = {
 
     const room = await Maze.findOne({ where: { id: player.roomId } });
 
-    const pelletPicked = PickedPellets.count({
+    const pelletPicked = await PickedPellets.count({
       where: { roomId: room.id, serverId: interaction.guild_id }
     });
 
+    console.log(pelletPicked);
     if (pelletPicked == 0) {
       if (room.pellet) {
         PickedPellets.create({
@@ -42,7 +43,12 @@ module.exports = {
           serverId: interaction.guild_id
         });
         player.score += 10;
-        return replyInteraction(Client, interaction, "")
+        player.save();
+        return replyInteraction(
+          Client,
+          interaction,
+          "You eat the object. It is delicious. You feel accomplished."
+        );
       } else if (room.energizer) {
         PickedPellets.create({
           roomId: room.id,
@@ -51,6 +57,7 @@ module.exports = {
         player.score += 50;
         player.energized = true;
         player.energizeTimer = 30;
+        player.save();
       } else {
         return replyInteraction(
           Client,

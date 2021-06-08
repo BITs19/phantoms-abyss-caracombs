@@ -67,7 +67,7 @@ module.exports = {
     player.roomId = newRoomId;
     player.save();
 
-    replyInteraction(
+    await replyInteraction(
       Client,
       interaction,
       `You move ${interaction.data.options[0].value}.`
