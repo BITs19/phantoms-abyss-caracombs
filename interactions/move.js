@@ -62,6 +62,17 @@ module.exports = {
         "You walk into a wall. You can't go that way. Use /room to get your bearings!"
       );
     }
+
+    //await Players.update({roomId: newRoomId}, {where:{id: player}})
+    player.roomId = newRoomId;
+    player.save();
+
+    replyInteraction(
+      Client,
+      interaction,
+      `You move ${interaction.data.options[0].value}.`
+    );
+
     Room.execute(interaction, Client);
     //replyInteraction(Client, interaction, "Boo");
   },
