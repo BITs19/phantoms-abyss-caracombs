@@ -19,10 +19,10 @@ const Players = sequelize.define("players", {
     allowNull: false,
     unique: true
   },
-  carrying: {
+  /*carrying: {
     type: Sequelize.INTEGER(1),
     defaultValue: null
-  },
+  },*/
   score: {
     type: Sequelize.INTEGER,
     defaultValue: 0

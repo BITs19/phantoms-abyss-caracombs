@@ -51,13 +51,13 @@ module.exports = {
           name: "Lives",
           value: record.lives
         },
-        {
+        /*{
           name: "Holding",
           value:
             record.holding != null
               ? require("../util/holdables.js")[record.holding]
               : "Nothing"
-        },
+        },*/
         {
           name: "Energized",
           value: record.energized ? "Yes" : "No"

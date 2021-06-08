@@ -84,7 +84,12 @@ module.exports = {
         description += await getDisplayName(Client, others[i].id, interaction);
         if (others.length > 2 && i != others.length - 1) description += ", ";
       }
-      description += " in the same room as you.\n";
+      description += " in the same room as you. ";
+      if (player.energized) {
+        description +=
+          "They are glowing a purple color. They look delicious. You could probably /eat them.";
+      }
+      description += "\n";
     }
 
     embed.description = description;
