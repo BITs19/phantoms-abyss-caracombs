@@ -35,12 +35,16 @@ module.exports = {
 
     switch (interaction.data.options[0].value.toUpperCase()) {
       case "NORTH":
+        newRoomId = oldRoom.north;
         break;
       case "SOUTH":
+        newRoomId = oldRoom.south;
         break;
       case "EAST":
+        newRoomId = oldRoom.east;
         break;
       case "WEST":
+        newRoomId = oldRoom.west;
         break;
       default:
         return replyInteraction(
@@ -48,8 +52,16 @@ module.exports = {
           interaction,
           `Invalid direction: ${interaction.data.options[0].value}`
         );
+        break;
     }
 
+    if (newRoomId == null) {
+      return replyInteraction(
+        Client,
+        interaction,
+        "You walk into a wall. You can't go that way. Use /room to get your bearings!"
+      );
+    }
     Room.execute(interaction, Client);
     //replyInteraction(Client, interaction, "Boo");
   },
