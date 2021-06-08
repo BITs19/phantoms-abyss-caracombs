@@ -69,7 +69,7 @@ module.exports = {
 
     if (pellet === 0 && room.energizer) {
       description +=
-        "\nThere is a floating, glowing, melon-sized object in center of the room, flashing a bright red and green. It looks delicious. You could probably /eat it.\n";
+        "\nThere is a floating, glowing, melon-sized object in center of the room, flashing a bright red and green. It looks delicious. You could probably /eat it, but that will take some time.\n";
     }
 
     const others = await Players.findAll({
