@@ -1,7 +1,7 @@
 const Players = require("../util/getPlayerTable.js");
 const Servers = require("../util/getServersTable.js");
 const replyInteraction = require("../util/replyInteraction.js");
-const Gh
+const Ghosts = require("../util/getGhostsTable.js");
 
 module.exports = {
   name: "join",
@@ -9,6 +9,7 @@ module.exports = {
   execute: async function(interaction, Client) {
     Players.sync();
     Servers.sync();
+    Ghosts.sync();
     if (await Servers.findOne({ where: { serverId: interaction.guild_id } })) {
       Players.create({
         id: interaction.member.user.id,
@@ -16,6 +17,29 @@ module.exports = {
       })
         .then(record => {
           try {
+            Ghosts.bulkCreate([
+              {
+                subId: 0,
+                active: true,
+                serverId: interaction.guild_id,
+                playerId: interaction.member.user.id
+              },
+              {
+                subId: 1,
+                serverId: interaction.guild_id,
+                playerId: interaction.member.user.id
+              },
+              {
+                subId: 2,
+                serverId: interaction.guild_id,
+                playerId: interaction.member.user.id
+              },
+              {
+                subId: 3,
+                serverId: interaction.guild_id,
+                playerId: interaction.member.user.id
+              }
+            ]);
           } catch (error) {
             console.log(error);
             replyInteraction(

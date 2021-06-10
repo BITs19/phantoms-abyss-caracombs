@@ -44,3 +44,5 @@ const Ghosts = sequelize.define("ghosts", {
     allowNull: false
   }
 });
+
+module.exports = Ghosts;
