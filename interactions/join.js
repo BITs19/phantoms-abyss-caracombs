@@ -1,6 +1,7 @@
 const Players = require("../util/getPlayerTable.js");
 const Servers = require("../util/getServersTable.js");
 const replyInteraction = require("../util/replyInteraction.js");
+const Gh
 
 module.exports = {
   name: "join",
@@ -14,6 +15,15 @@ module.exports = {
         serversId: interaction.guild_id
       })
         .then(record => {
+          try {
+          } catch (error) {
+            console.log(error);
+            replyInteraction(
+              Client,
+              interaction,
+              "There was an error adding the ghosts. It has been logged."
+            );
+          }
           /*Client.api
             .interactions(interaction.id, interaction.token)
             .callback.post({
