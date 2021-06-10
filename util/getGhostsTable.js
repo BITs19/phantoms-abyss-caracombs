@@ -12,6 +12,29 @@ const sequelize = new Sequelize(
   }
 );
 
-const Ghosts = sequelize.define("ghosts",{
- 
-})
+const Ghosts = sequelize.define("ghosts", {
+  serverId: {
+    type: Sequelize.STRING(25),
+    allowNull: false
+  },
+  playerId: {
+    type: Sequelize.STRING(25),
+    allowNull: false
+  },
+  roomId: {
+    type: Sequelize.INTEGER(4),
+    allowNull: false
+  },
+  direction: {
+    type: Sequelize.STRING(5),
+    allowNull: true
+  },
+  movement: {
+    type: Sequelize.DECIMAL(10, 1),
+    defaultValue: 0
+  },
+  active: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  }
+});
