@@ -52,6 +52,9 @@ const Players = sequelize.define("players", {
   energizeTimer: {
     type: Sequelize.INTEGER,
     defaultValue: 0
+  },
+  direction: {
+    type: Sequelize.STRING(5)
   }
 });
 
