@@ -23,12 +23,13 @@ const Ghosts = sequelize.define("ghosts", {
   },
   roomId: {
     type: Sequelize.INTEGER(4),
-    allowNull: true,a
-    
+    allowNull: false,
+    defaultValue: 406
   },
   direction: {
     type: Sequelize.STRING(5),
-    allowNull: true
+    allowNull: false,
+    defaultValue: "west"
   },
   movement: {
     type: Sequelize.DECIMAL(10, 1),
@@ -37,5 +38,9 @@ const Ghosts = sequelize.define("ghosts", {
   active: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
+  },
+  subId: {
+    type: Sequelize.INTEGER(1),
+    allowNull: false
   }
 });
