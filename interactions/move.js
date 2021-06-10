@@ -32,19 +32,24 @@ module.exports = {
     });
 
     let newRoomId = null;
+    let direction;
 
     switch (interaction.data.options[0].value.toUpperCase()) {
       case "NORTH":
         newRoomId = oldRoom.north;
+        direction = "north";
         break;
       case "SOUTH":
         newRoomId = oldRoom.south;
+        direction = "south";
         break;
       case "EAST":
         newRoomId = oldRoom.east;
+        direction = "east";
         break;
       case "WEST":
         newRoomId = oldRoom.west;
+        direction = "west";
         break;
       default:
         return replyInteraction(
@@ -65,6 +70,7 @@ module.exports = {
 
     //await Players.update({roomId: newRoomId}, {where:{id: player}})
     player.roomId = newRoomId;
+    player.direction = direction;
     player.save();
 
     await replyInteraction(
