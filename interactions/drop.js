@@ -3,6 +3,7 @@ const Servers = require("../util/getServersTable.js");
 const Maze = require("../util/getMazeTable.js");
 const PickedPellets = require("../util/getPickedPellets.js");
 const replyInteraction = require("../util/replyInteraction.js");
+const Ghosts = require("../util/getGhostsTable.js");
 
 module.exports = {
   name: "Drop",
@@ -42,6 +43,10 @@ module.exports = {
       if (option % 3 == 0) {
         PickedPellets.drop();
         outString += "PickedPellets, ";
+      }
+      if (option % 11 == 0) {
+        Ghosts.drop();
+        outString += "Ghosts, ";
       }
       if (outString === "") outString = "No ";
       outString += "tables dropped!";
