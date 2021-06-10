@@ -23,7 +23,8 @@ const Ghosts = sequelize.define("ghosts", {
   },
   roomId: {
     type: Sequelize.INTEGER(4),
-    allowNull: true
+    allowNull: true,a
+    
   },
   direction: {
     type: Sequelize.STRING(5),
