@@ -7,9 +7,7 @@ module.exports = {
   pattern: /\bcheck\b/i,
   execute: async function(interaction, Client) {
     Players.sync();
-    //Maze.sync();
 
-    //console.log(interaction.data.options);
     let userId;
     if (interaction.data.options) {
       userId = interaction.data.options[0].value;
@@ -18,19 +16,11 @@ module.exports = {
     }
     const record = await Players.findOne({ where: { id: userId } });
     if (!record)
-      replyInteraction(Client, interaction, "That person isn't a player!");
-    /*return Client.api
-        .interactions(interaction.id, interaction.token)
-        .callback.post({
-          data: {
-            type: 4,
-            data: {
-              content: "That person isn't a player!"
-              //embeds: [embed]
-            }
-          }
-        });*/
-
+      return replyInteraction(
+        Client,
+        interaction,
+        "That person isn't a player!"
+      );
     const guild = await Client.guilds.fetch(interaction.guild_id);
     const member = await guild.members.fetch(userId);
     const avatar = (await Client.users.fetch(userId)).avatarURL();
@@ -63,16 +53,8 @@ module.exports = {
           value: record.energized ? "Yes" : "No"
         }
       ]);
-    /*Client.api.interactions(interaction.id, interaction.token).callback.post({
-      data: {
-        type: 4,
-        data: {
-          //content: "",
-          embeds: [embed]
-        }
-      }
-    });*/
     replyInteraction(Client, interaction, "", [embed]);
+    
   },
   addInteraction: {
     name: "check",
@@ -83,6 +65,11 @@ module.exports = {
         name: "player",
         description: "Player to check. If left blank, will check you",
         required: false
+      }
+    ]
+  }
+};
+ired: false
       }
     ]
   }
