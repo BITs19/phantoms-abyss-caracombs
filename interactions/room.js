@@ -3,7 +3,6 @@ const Players = require("../util/getPlayerTable.js");
 const PickedPellets = require("../util/getPickedPellets.js");
 const { Sequelize, Op } = require("sequelize");
 const getDisplayName = require("../util/getDisplayName.js");
-//const Discord = require("discord.js");
 const replyInteraction = require("../util/replyInteraction.js");
 
 module.exports = {
@@ -22,12 +21,9 @@ module.exports = {
         interaction,
         "You don't appear to be a player in this server! Use /join start your adventure!"
       );
-    //console.log(player.roomId);
-    //console.log(player.datavalues);
     const room = await Maze.findOne({
       where: { id: player.roomId }
     });
-    //console.log("here 1");
 
     let embed = {
       title: "You look around the room."
@@ -78,7 +74,6 @@ module.exports = {
         id: { [Op.not]: player.id }
       }
     });
-    //console.log(others);
 
     if (others.length === 0) {
       description += "\nYou are alone.\n";

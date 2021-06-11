@@ -10,16 +10,6 @@ module.exports = {
       channelId: interaction.channel_id
     })
       .then(created => {
-        /*Client.api
-          .interactions(interaction.id, interaction.token)
-          .callback.post({
-            data: {
-              type: 4,
-              data: {
-                content: "Phantoms Abyss Catacombs bound to this channel!"
-              }
-            }
-          });*/
         replyInteraction(
           Client,
           interaction,
@@ -37,17 +27,6 @@ module.exports = {
             })
             .catch(error => {
               console.log(error);
-              /*Client.api
-                .interactions(interaction.id, interaction.token)
-                .callback.post({
-                  data: {
-                    type: 4,
-                    data: {
-                      content:
-                        "There was an error updating the bound channel. It has been logged."
-                    }
-                  }
-                });*/
               replyInteraction(
                 Client,
                 interaction,
@@ -70,3 +49,4 @@ module.exports = {
       "Bind the bot to a certain channel. This is required for the bot to function."
   }
 };
+;
