@@ -54,7 +54,6 @@ module.exports = {
         }
       ]);
     replyInteraction(Client, interaction, "", [embed]);
-    
   },
   addInteraction: {
     name: "check",
@@ -65,11 +64,6 @@ module.exports = {
         name: "player",
         description: "Player to check. If left blank, will check you",
         required: false
-      }
-    ]
-  }
-};
-ired: false
       }
     ]
   }
