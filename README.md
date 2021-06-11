@@ -1,27 +1,8 @@
 # Phantoms Abyss Catacombs
-A 
+A text adventure game that is played entirely in Discord!
 
-[Node.js](https://nodejs.org/en/about/) is a popular runtime that lets you run JavaScript on the server. This project uses the [Fastify](https://www.fastify.io/) framework and basic templating with [Handlebars](https://handlebarsjs.com/).
+This project is not currently complete, and should not be added to a server expecting a perfect product.
 
-## What's in this project?
+Click [this link](https://discord.com/oauth2/authorize?client_id=848287857629855754&scope=bot) to add Phantom's Abyss Catacombs to your server!
 
-← `README.md`: That’s this file, where you can tell people what your cool website does and how you built it.
-
-← `public/style.css`: The styling rules for your pages and posts.
-
-← `server.js`: The main server script for your new site.
-
-← `src/`: This folder holds page templates, additional scripts.
-
-### Working in the `src/` folder 📁
-
-← `src/pages/index.hbs`: This is the main page template for your site.
-
-![Glitch](https://cdn.glitch.com/a9975ea6-8949-4bab-addb-8a95021dc2da%2FLogo_Color.svg?v=1602781328576)
-
-## You built this with Glitch!
-
-[Glitch](https://glitch.com) is a friendly community where millions of people come together to build web apps and websites.
-
-- Need more help? [Check out our Help Center](https://help.glitch.com/) for answers to any common questions.
-- Ready to make it official? [Become a paid Glitch member](https://glitch.com/pricing) to boost your app with private sharing, more storage and memory, domains and more.
+Made with and hosted by [Glitch](https://glitch.com)
