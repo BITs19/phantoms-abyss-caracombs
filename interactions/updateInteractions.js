@@ -35,5 +35,3 @@ module.exports = {
     description: "Update the slash commands for this bot."
   }
 };
-
-};
