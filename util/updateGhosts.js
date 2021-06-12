@@ -14,6 +14,34 @@ module.exports = async function(userId, serverId) {
   let serverPlayerGhosts = await Ghosts.findAll({
     where: { playerId: userId, serverId: serverId }
   });
+  let scatter;
+  if (player.level < 2) {
+    if (
+      player.timer <= 7 ||
+      (player.timer > 27 && player.timer <= 34) ||
+      (player.timer > 54 && player.timer <= 59) ||
+      (player.timer > 79 && player.timer <= 84)
+    )
+      scatter = true;
+    else scatter = false;
+  } else if (player.level < 5) {
+    if (
+      player.timer <= 7 ||
+      (player.timer > 27 && player.timer <= 34) ||
+      (player.timer > 54 && player.timer <= 59) ||
+      player.timer == 1089
+    )
+      scatter = true;
+    else scatter = false;
+  }else {
+    if (
+      player.timer <= 5 ||
+      (player.timer > 25 && player.timer <= 30) ||
+      (player.timer > 50 && player.timer <= 55) ||
+      player.timer == 1089
+    )scatter = true;
+    else scatter = false;
+  }
   for (let ghost of serverPlayerGhosts) {
     console.log(ghost.subId);
     let targetId = null;
@@ -44,8 +72,10 @@ module.exports = async function(userId, serverId) {
               targetRow = playerRoom.row - 4;
               targetCol = playerRoom.col - 4;
               break;
-          }          
+          }
         }
+        break;
+      case 2:
     }
   }
 };
