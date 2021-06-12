@@ -79,7 +79,9 @@ module.exports = {
       `You move ${interaction.data.options[0].value}.`
     );
 
-    updateGhosts().then(Room.execute(interaction, Client));
+    updateGhosts(interaction.member.user.id, interaction.guild_id).then(
+      Room.execute(interaction, Client)
+    );
   },
   addInteraction: {
     name: "move",

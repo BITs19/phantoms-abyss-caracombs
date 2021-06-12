@@ -8,13 +8,14 @@ module.exports = async function(userId, serverId) {
   Players.sync();
   Maze.sync();
   const player = await Players.findOne({
-    where: { id: userId, serverId: serverId }
+    where: { id: userId, serversId: serverId }
   });
   const playerRoom = await Maze.findOne({ where: { id: player.roomId } });
   let serverPlayerGhosts = await Ghosts.findAll({
     where: { playerId: userId, serverId: serverId }
   });
   for (let ghost of serverPlayerGhosts) {
+    console.log(ghost.subId);
     let targetId = null;
     let targetRow = null;
     let targetCol = null;
