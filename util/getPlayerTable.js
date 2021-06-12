@@ -55,6 +55,10 @@ const Players = sequelize.define("players", {
   },
   direction: {
     type: Sequelize.STRING(5)
+  },
+  ghostTimer: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   }
 });
 

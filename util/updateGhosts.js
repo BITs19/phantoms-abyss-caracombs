@@ -4,15 +4,13 @@ const Players = require("./getPlayerTable.js");
 const Maze = require("./getMazeTable.js");
 
 module.exports = async function(userId, serverId) {
-  console.log("updating ghosts")
   Ghosts.sync();
   Players.sync();
   Maze.sync();
   const player = await Players.findOne({
     where: { id: userId, serversId: serverId },
-    attributes: ["level", "timer", "roomId", "direction"]
-  });
-  console.log("player got")
+    attributes: ["level", "ghostTimer", "roomId", "direction"]
+  }); 
   const playerRoom = await Maze.findOne({
     where: { id: player.roomId },
     attributes: ["row", "col"]
@@ -26,28 +24,28 @@ module.exports = async function(userId, serverId) {
   let scatter;
   if (player.level < 2) {
     if (
-      player.timer <= 7 ||
-      (player.timer > 27 && player.timer <= 34) ||
-      (player.timer > 54 && player.timer <= 59) ||
-      (player.timer > 79 && player.timer <= 84)
+      player.ghostTimer <= 7 ||
+      (player.ghostTimer > 27 && player.ghostTimer <= 34) ||
+      (player.ghostTimer > 54 && player.ghostTimer <= 59) ||
+      (player.ghostTimer > 79 && player.ghostTimer <= 84)
     )
       scatter = true;
     else scatter = false;
   } else if (player.level < 5) {
     if (
-      player.timer <= 7 ||
-      (player.timer > 27 && player.timer <= 34) ||
-      (player.timer > 54 && player.timer <= 59) ||
-      player.timer == 1089
+      player.ghostTimer <= 7 ||
+      (player.ghostTimer > 27 && player.ghostTimer <= 34) ||
+      (player.ghostTimer > 54 && player.ghostTimer <= 59) ||
+      player.ghostTimer == 1089
     )
       scatter = true;
     else scatter = false;
   } else {
     if (
-      player.timer <= 5 ||
-      (player.timer > 25 && player.timer <= 30) ||
-      (player.timer > 50 && player.timer <= 55) ||
-      player.timer == 1089
+      player.ghostTimer <= 5 ||
+      (player.ghostTimer > 25 && player.ghostTimer <= 30) ||
+      (player.ghostTimer > 50 && player.ghostTimer <= 55) ||
+      player.ghostTimer == 1089
     )
       scatter = true;
     else scatter = false;
@@ -71,7 +69,7 @@ module.exports = async function(userId, serverId) {
         else targetId = player.roomId;
         break;
       case 1:
-        if (player.timer >= 1) {
+        if (player.ghostTimer >= 1) {
           ghost.active = true;
           if (scatter) targetId = 3;
           else {
