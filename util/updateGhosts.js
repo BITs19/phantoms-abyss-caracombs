@@ -51,6 +51,14 @@ module.exports = async function(userId, serverId) {
     let targetId = null;
     let targetRow = null;
     let targetCol = null;
+    
+    /*This huge switch statement establishes the information needed
+    for each ghost to decide which direction it needs to go
+    
+    case 0 -> red
+    case 1 -> pink
+    case 2 -> blue
+    case 3 -> orange */
     switch (ghost.subId) {
       case 0:
         if (scatter) targetId = 26;
@@ -88,7 +96,35 @@ module.exports = async function(userId, serverId) {
         else {
           if (pelletsCount > 30) {
             ghost.active = true;
-            let 
+            let twoSpotsInFrontOfPlayerRow;
+            let twoSpotsInFrontOfPlayerColumn;
+            switch (player.direction) {
+              case "south":
+                twoSpotsInFrontOfPlayerRow = playerRoom.row + 2;
+                twoSpotsInFrontOfPlayerColumn = playerRoom.col;
+                break;
+              case "east":
+                twoSpotsInFrontOfPlayerRow = playerRoom.row;
+                twoSpotsInFrontOfPlayerColumn = playerRoom.col + 2;
+                break;
+              case "west":
+                twoSpotsInFrontOfPlayerRow = playerRoom.row;
+                twoSpotsInFrontOfPlayerColumn = playerRoom.col - 2;
+                break;
+              case "north":
+                //replicating bug in original game
+                twoSpotsInFrontOfPlayerRow = playerRoom.row - 2;
+                twoSpotsInFrontOfPlayerColumn = playerRoom.col - 2;
+                break;
+            }
+            const red = await Ghosts.findone({
+              where: { playerId: userId, serverId: serverId, subId: 0 },
+              attributes: ["roomId"]
+            });
+            const redRoom = await Maze.findOne({
+              where: { id: red.roomId },
+              attributes: ["row", "col"]
+            });
           }
         }
         break;
