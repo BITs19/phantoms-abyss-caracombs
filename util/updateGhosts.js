@@ -150,5 +150,23 @@ module.exports = async function(userId, serverId) {
         else targetId = player.roomId;
         break;
     }
+
+    //now each ghost has the info it needs to decide which way to go.
+
+    const ghostRoom = Maze.findOne({ where: { id: ghost.roomId } });
+    let options = [];
+    if (ghost.direction != "south" && ghostRoom.north != null)
+      options.push(ghostRoom.north);
+    if (ghost.direction != "north" && ghostRoom.south != null)
+      options.push(ghostRoom.south);
+    if (ghost.direction != "east" && ghostRoom.west != null)
+      options.push(ghostRoom.west);
+    if (ghost.direction != "west" && ghostRoom.east != null)
+      options.push(ghostRoom.east);
+    if(options.length == 1){
+      ghost.roomId = options[0];
+      ghost.save();
+      continue;
+    }
   }
 };
