@@ -8,9 +8,13 @@ module.exports = async function(userId, serverId) {
   Players.sync();
   Maze.sync();
   const player = await Players.findOne({
-    where: { id: userId, serversId: serverId }
+    where: { id: userId, serversId: serverId },
+    attributes: ["level", "timer", "roomId", "direction"]
   });
-  const playerRoom = await Maze.findOne({ where: { id: player.roomId } });
+  const playerRoom = await Maze.findOne({
+    where: { id: player.roomId },
+    attributes: ["row", "col"]
+  });
   let serverPlayerGhosts = await Ghosts.findAll({
     where: { playerId: userId, serverId: serverId }
   });
@@ -133,7 +137,17 @@ module.exports = async function(userId, serverId) {
         }
         break;
       case 3:
-        
+        const orangeRoom = await Maze.findOne({
+          where: { id: ghost.roomId },
+          attributes: ["row", "col"]
+        });
+        const orangeRowDif = orangeRoom.row - playerRoom.row;
+        const orangeColDif = orangeRoom.col - playerRoom.col;
+        const dist = Math.sqrt(
+          orangeRowDif * orangeRowDif + orangeColDif * orangeColDif
+        );
+        if (scatter || dist < 8) targetId = 981;
+        else targetId = player.roomId;
         break;
     }
   }
