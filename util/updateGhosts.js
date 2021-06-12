@@ -21,6 +21,7 @@ module.exports = async function(userId, serverId) {
         if (player.timer >= 1) {
           ghost.active = true;
         }
+        
     }
   }
 };
