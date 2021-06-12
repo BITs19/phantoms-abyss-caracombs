@@ -2,6 +2,7 @@ const replyInteraction = require("../util/replyInteraction.js");
 const Players = require("../util/getPlayerTable.js");
 const Maze = require("../util/getMazeTable.js");
 const Room = require("./room.js");
+const updateGhosts = require("../util/updateGhosts.js");
 
 module.exports = {
   name: "move",
