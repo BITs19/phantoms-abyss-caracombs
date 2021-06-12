@@ -79,7 +79,7 @@ module.exports = {
       `You move ${interaction.data.options[0].value}.`
     );
 
-    Room.execute(interaction, Client);
+    updateGhosts().then(Room.execute(interaction, Client));
   },
   addInteraction: {
     name: "move",
