@@ -1,6 +1,7 @@
 //const fs = require("fs");
 //const Maze = require("../util/getMazeTable.js");
 const replyInteraction = require("../util/replyInteraction.js");
+const Players = require("../util/getPlayerTable.js");
 
 module.exports = {
   name: "ping",
@@ -8,7 +9,6 @@ module.exports = {
   execute: async function(interaction, Client) {
     try {
       //If I need to do something once, I tend to put it in here, hence the try/catch
-      const player = 
       replyInteraction(Client, interaction, "Pong!");
     } catch (err) {
       console.log(err);
