@@ -12,7 +12,9 @@ module.exports = async function(userId, serverId) {
     where: { playerId: userId, serverId: serverId }
   });
   for (let ghost of serverPlayerGhosts) {
-    let targetId;
+    let targetId = null;
+    let targetRow = null;
+    let targetCol = null;
     switch (ghost.subId) {
       case 0:
         targetId = player.roomId;
@@ -21,7 +23,7 @@ module.exports = async function(userId, serverId) {
         if (player.timer >= 1) {
           ghost.active = true;
         }
-        
+        switch(player.dire
     }
   }
 };
