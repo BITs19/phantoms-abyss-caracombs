@@ -13,8 +13,14 @@ module.exports = async function(userId, serverId) {
   });
   for (let ghost of serverPlayerGhosts) {
     let targetId;
-    switch(ghost.subId){
+    switch (ghost.subId) {
+      case 0:
+        targetId = player.roomId;
+        break;
+      case 1:
+        if (player.timer >= 1) {
+          ghost.active = true;
         }
-    
+    }
   }
 };

@@ -67,6 +67,7 @@ module.exports = {
         "You walk into a wall. You can't go that way. Use /room to get your bearings!"
       );
     }
+    player.timer += 1;
     player.roomId = newRoomId;
     player.direction = direction;
     player.save();
