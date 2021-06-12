@@ -53,11 +53,15 @@ module.exports = async function(userId, serverId) {
     let targetCol = null;
     switch (ghost.subId) {
       case 0:
-        targetId = player.roomId;
+        if(scatter)
+          targetId = 26;
+        else targetId = player.roomId;
         break;
       case 1:
         if (player.timer >= 1) {
           ghost.active = true;
+          if(scatter)
+            else{}
           switch (player.direction) {
             case "south":
               targetRow = playerRoom.row + 4;
