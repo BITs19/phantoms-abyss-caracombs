@@ -51,7 +51,7 @@ module.exports = async function(userId, serverId) {
     let targetId = null;
     let targetRow = null;
     let targetCol = null;
-    
+
     /*This huge switch statement establishes the information needed
     for each ghost to decide which direction it needs to go
     
@@ -125,8 +125,15 @@ module.exports = async function(userId, serverId) {
               where: { id: red.roomId },
               attributes: ["row", "col"]
             });
+            const rowDif = twoSpotsInFrontOfPlayerRow - redRoom.row;
+            const colDif = twoSpotsInFrontOfPlayerColumn - redRoom.col;
+            targetRow = twoSpotsInFrontOfPlayerRow + rowDif;
+            targetCol = twoSpotsInFrontOfPlayerColumn + colDif;
           }
         }
+        break;
+      case 3:
+        
         break;
     }
   }
