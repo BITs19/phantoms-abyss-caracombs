@@ -53,38 +53,38 @@ module.exports = async function(userId, serverId) {
     let targetCol = null;
     switch (ghost.subId) {
       case 0:
-        if(scatter)
-          targetId = 26;
+        if (scatter) targetId = 26;
         else targetId = player.roomId;
         break;
       case 1:
         if (player.timer >= 1) {
           ghost.active = true;
-          if(scatter)
-            else{}
-          switch (player.direction) {
-            case "south":
-              targetRow = playerRoom.row + 4;
-              targetCol = playerRoom.col;
-              break;
-            case "east":
-              targetRow = playerRoom.row;
-              targetCol = playerRoom.col + 4;
-              break;
-            case "west":
-              targetRow = playerRoom.row;
-              targetCol = playerRoom.col - 4;
-              break;
-            case "north":
-              //replicating bug in original game
-              targetRow = playerRoom.row - 4;
-              targetCol = playerRoom.col - 4;
-              break;
+          if (scatter) targetId = 3;
+          else {
+            switch (player.direction) {
+              case "south":
+                targetRow = playerRoom.row + 4;
+                targetCol = playerRoom.col;
+                break;
+              case "east":
+                targetRow = playerRoom.row;
+                targetCol = playerRoom.col + 4;
+                break;
+              case "west":
+                targetRow = playerRoom.row;
+                targetCol = playerRoom.col - 4;
+                break;
+              case "north":
+                //replicating bug in original game
+                targetRow = playerRoom.row - 4;
+                targetCol = playerRoom.col - 4;
+                break;
+            }
           }
         }
         break;
       case 2:
-        if(pelletsCount > 30){
+        if (pelletsCount > 30) {
           ghost.active = true;
         }
         break;
