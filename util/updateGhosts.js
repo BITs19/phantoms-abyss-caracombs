@@ -14,6 +14,9 @@ module.exports = async function(userId, serverId) {
   let serverPlayerGhosts = await Ghosts.findAll({
     where: { playerId: userId, serverId: serverId }
   });
+  const pelletsCount = await PickedPellets.count({
+    where: { serverID: serverId }
+  });
   let scatter;
   if (player.level < 2) {
     if (
@@ -33,13 +36,14 @@ module.exports = async function(userId, serverId) {
     )
       scatter = true;
     else scatter = false;
-  }else {
+  } else {
     if (
       player.timer <= 5 ||
       (player.timer > 25 && player.timer <= 30) ||
       (player.timer > 50 && player.timer <= 55) ||
       player.timer == 1089
-    )scatter = true;
+    )
+      scatter = true;
     else scatter = false;
   }
   for (let ghost of serverPlayerGhosts) {
@@ -76,6 +80,10 @@ module.exports = async function(userId, serverId) {
         }
         break;
       case 2:
+        if(pelletsCount > 30){
+          ghost.active = true;
+        }
+        break;
     }
   }
 };
