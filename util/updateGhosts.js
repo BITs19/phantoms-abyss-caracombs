@@ -4,6 +4,7 @@ const Players = require("./getPlayerTable.js");
 const Maze = require("./getMazeTable.js");
 
 module.exports = async function(userId, serverId) {
+  console.log("updating ghosts")
   Ghosts.sync();
   Players.sync();
   Maze.sync();
@@ -11,6 +12,7 @@ module.exports = async function(userId, serverId) {
     where: { id: userId, serversId: serverId },
     attributes: ["level", "timer", "roomId", "direction"]
   });
+  console.log("player got")
   const playerRoom = await Maze.findOne({
     where: { id: player.roomId },
     attributes: ["row", "col"]
@@ -155,18 +157,27 @@ module.exports = async function(userId, serverId) {
 
     const ghostRoom = Maze.findOne({ where: { id: ghost.roomId } });
     let options = [];
+    //these if statements are ordered such that lower indecies in options are at a higher preference
     if (ghost.direction != "south" && ghostRoom.north != null)
-      options.push(ghostRoom.north);
-    if (ghost.direction != "north" && ghostRoom.south != null)
-      options.push(ghostRoom.south);
+      options.push(ghostRoom.north);    
     if (ghost.direction != "east" && ghostRoom.west != null)
       options.push(ghostRoom.west);
+    if (ghost.direction != "north" && ghostRoom.south != null)
+      options.push(ghostRoom.south);
     if (ghost.direction != "west" && ghostRoom.east != null)
       options.push(ghostRoom.east);
+    
+    //if there is only one option, not further decision needs to be made;
     if(options.length == 1){
       ghost.roomId = options[0];
       ghost.save();
       continue;
+    }else{
+      if(targetRow != null){
+        const targetRoom = await Maze.findOne({where: {id: targetId}, attributes: ["row", "col"]});
+        targetRow = targetRoom.row;
+        targetCol = targetRoom.col;
+      }
     }
   }
 };

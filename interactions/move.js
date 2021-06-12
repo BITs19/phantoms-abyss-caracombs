@@ -2,6 +2,7 @@ const replyInteraction = require("../util/replyInteraction.js");
 const Players = require("../util/getPlayerTable.js");
 const Maze = require("../util/getMazeTable.js");
 const Room = require("./room.js");
+const updateGhosts = require("../util/updateGhosts.js");
 
 module.exports = {
   name: "move",
@@ -67,8 +68,7 @@ module.exports = {
         "You walk into a wall. You can't go that way. Use /room to get your bearings!"
       );
     }
-
-    //await Players.update({roomId: newRoomId}, {where:{id: player}})
+    player.timer += 1;
     player.roomId = newRoomId;
     player.direction = direction;
     player.save();
@@ -79,8 +79,8 @@ module.exports = {
       `You move ${interaction.data.options[0].value}.`
     );
 
+    updateGhosts(interaction.member.user.id, interaction.guild_id);
     Room.execute(interaction, Client);
-    //replyInteraction(Client, interaction, "Boo");
   },
   addInteraction: {
     name: "move",
