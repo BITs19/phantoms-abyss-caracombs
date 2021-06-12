@@ -84,8 +84,12 @@ module.exports = async function(userId, serverId) {
         }
         break;
       case 2:
-        if (pelletsCount > 30) {
-          ghost.active = true;
+        if (scatter) targetId = 1008;
+        else {
+          if (pelletsCount > 30) {
+            ghost.active = true;
+            let 
+          }
         }
         break;
     }
