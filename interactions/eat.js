@@ -35,8 +35,6 @@ module.exports = {
       where: { roomId: room.id, serverId: interaction.guild_id }
     });
 
-    
-    console.log(pelletPicked);
     if (pelletPicked == 0) {
       if (room.pellet) {
         await PickedPellets.create({
